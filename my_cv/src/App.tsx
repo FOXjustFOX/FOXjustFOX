@@ -7,6 +7,7 @@ import About from "./About";
 import Projects from "./Projects";
 import RepoDetails from "./RepoDetails";
 
+
 import "./styles.css";
 
 const NotFound: React.FC = () => (
