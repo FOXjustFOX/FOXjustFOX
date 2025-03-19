@@ -41,7 +41,7 @@ jobs:
         with:
           host: ${{ secrets.RPI_HOST }}        # Your Raspberry Pi's IP or DNS
           username: ${{ secrets.RPI_USER }}      # Typically "pi" or your chosen user
-          key: ${{ secrets.RPI_SECRET }}        # The private SSH key from your secrets
+          password: ${{ secrets.RPI_SECRET }}        # The private SSH key from your secrets
           # If your SSH runs on a non-standard port, add: port: # $ {{ secrets.RPI_PORT }}
           script: |
             cd /home/fox/256gb_drive/server/apps/FOXjustFOX
