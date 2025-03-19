@@ -1,22 +1,39 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion"; // Import AnimatePresence
+import Layout from "./Layout";
+import Home from "./Home";
+import About from "./About";
+import Projects from "./Projects";
+import RepoDetails from "./repoDetails";
 
-const Home: React.FC = () => <h1>Home</h1>;
-const About: React.FC = () => <h1>About</h1>;
+import "./styles.css";
+
+const NotFound: React.FC = () => (
+    <div className="page">
+        <h1>404 - Page Not Found</h1>
+        <p>Oops! The page you are looking for does not exist.</p>
+    </div>
+);
 
 const App: React.FC = () => {
-  return (
-    <div>
-      <nav>
-      <Link to="/">Home</Link> | <Link to="/about">About</Link>
-      </nav>
+    const location = useLocation(); // Get current route location
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </div>
-  );
+    return (
+        <div className="container">
+            <AnimatePresence mode="wait">
+                <Routes location={location} key={location.pathname}>
+                    <Route element={<Layout />}>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/projects" element={<Projects />} />
+                        <Route path="/projects/:repoName" element={<RepoDetails />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="*" element={<NotFound />} />
+                    </Route>
+                </Routes>
+            </AnimatePresence>
+        </div>
+    );
 };
 
 export default App;

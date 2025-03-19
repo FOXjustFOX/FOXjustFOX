@@ -1,13 +1,190 @@
+html,
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    text-align: center;
+    height: 100%;
     width: 100%;
+    margin: 0;
     display: flex;
-    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#root {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
+
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: light dark;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #d7d7d7;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
+}
+a:hover {
+    color: #535bf2;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh; /* Ensures full viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centers everything vertically */
+}
+
+nav {
+    width: 100%;
+    text-align: left;
+    padding: 15px;
+    /* display: flex; */
+    /* justify-content:left; */
+    /* align-items: center; */
+    /* flex-direction: row; */
+    position: fixed; /* Fixes navbar at the top */
+    top: 0;
+    left: 0;
+    background: white; /* Ensures navbar stays visible */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds slight shadow */
+}
+
+.link {
+    margin-right: 15px;
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; /* Makes it take up full remaining space */
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+}
+
+.page ul {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(250px, 1fr)
+    ); /* Responsive grid */
+    gap: 20px; /* Space between grid items */
+    padding: 15px;
+    width: 90%;
+    max-width: 1200px;
+    overflow-y: auto;
+}
+
+.page li {
+    padding: 15px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    list-style: none;
+    border: none;
+}
+
+.page li:hover {
+    transform: scale(1.5); /* ✅ Adds a slight zoom effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* ✅ Increases shadow */
+}
+
+.page li a {
+    font-weight: bold;
+    color: #646cff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.page li a:hover {
+    color: #535bf2;
+}
+
+.page p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.page a {
+    color: #646cff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.page a:hover {
+    color: #535bf2;
+}
+
+.repo-details {
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    text-align: center;
+}
+
+.repo-details a {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.readme {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    text-align: left;
+    overflow-wrap: break-word;
+    overflow-y: auto; /* ✅ Enables vertical scrolling */
+    max-height: 500px; /* ✅ Limits height */
+}
+
+.readme li:hover {
+    transform: none !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.readme h2 {
+    color: #333;
+}
+
+.readme a {
+    color: #646cff;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.readme img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px 0;
+}
