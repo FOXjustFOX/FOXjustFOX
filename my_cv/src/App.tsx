@@ -5,7 +5,7 @@ import Layout from "./Layout";
 import Home from "./Home";
 import About from "./About";
 import Projects from "./Projects";
-import RepoDetails from "./repoDetails";
+import RepoDetails from "./RepoDetails";
 
 import "./styles.css";
 
