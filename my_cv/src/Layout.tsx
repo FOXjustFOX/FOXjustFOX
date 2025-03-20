@@ -5,9 +5,18 @@ const Layout: React.FC = () => {
     return (
         <div className="container">
             <nav>
-                <Link className="link" to="/">Home</Link> 
-                <Link className="link" to="/projects">Projects</Link> 
-                <Link className="link" to="/about">About</Link>
+                <Link className="link" to="/">
+                    Home
+                </Link>
+                <Link className="link" to="/projects">
+                    Projects
+                </Link>
+                <Link className="link" to="/about">
+                    About
+                </Link>
+                <a className="link" href="https://lis.rocks/api">
+                    API
+                </a>
             </nav>
             <Outlet /> {/* This is where child routes will be rendered */}
         </div>

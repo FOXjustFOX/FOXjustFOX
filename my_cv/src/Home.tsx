@@ -12,6 +12,9 @@ const Home: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}>
+            <div>
+                
+            </div>
             <h1>Home</h1>
             <p>Current Count: {count}</p>
             <button onClick={() => setCount(count + 1)}>Increase</button>
