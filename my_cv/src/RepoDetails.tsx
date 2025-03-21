@@ -56,7 +56,7 @@ const RepoDetails: React.FC = () => {
     const [repo, setRepo] = useState<Repo | null>(null);
     const [readme, setReadme] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const [error] = useState<string | null>(null);
     const contentRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
