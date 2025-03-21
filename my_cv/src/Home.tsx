@@ -49,7 +49,7 @@ const Home: React.FC = () => {
                     }
                     transition={{ duration: 0.5, ease: "easeOut" }}>
                     <img
-                        src="assets/profile-photo.jpg"
+                        src="src/assets/profile-photo.jpg"
                         alt="Profile Photo"
                         className="profile-photo"
                     />
