@@ -15,7 +15,7 @@ const Layout: React.FC = () => {
                     About
                 </Link>
                 <a className="link" href="https://lis.rocks/api">
-                    API
+                    Solvro API
                 </a>
             </nav>
             <Outlet /> {/* This is where child routes will be rendered */}
