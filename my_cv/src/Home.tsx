@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import profilePhoto from "./assets/profile-photo.jpg";
 
 const Home: React.FC = () => {
     // References for scroll animations
@@ -49,7 +50,7 @@ const Home: React.FC = () => {
                     }
                     transition={{ duration: 0.5, ease: "easeOut" }}>
                     <img
-                        src="src/assets/profile-photo.jpg"
+                        src={profilePhoto}
                         alt="Profile Photo"
                         className="profile-photo"
                     />
