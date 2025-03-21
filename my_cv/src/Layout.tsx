@@ -11,9 +11,9 @@ const Layout: React.FC = () => {
                 <Link className="link" to="/projects">
                     Projects
                 </Link>
-                <a className="link" href="https://api.lis.rocks">
+                {/* <a className="link" href="https://api.lis.rocks">
                     Solvro API
-                </a>
+                </a> */}
             </nav>
             <Outlet /> {/* This is where child routes will be rendered */}
         </div>
