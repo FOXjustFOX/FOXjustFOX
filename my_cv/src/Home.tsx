@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import profilePhoto from "./assets/profile-photo.jpg";
+import { Link } from "react-router-dom";
 
 const Home: React.FC = () => {
     // References for scroll animations
@@ -56,10 +57,51 @@ const Home: React.FC = () => {
                     />
                     <div className="personal-info">
                         <h2>Contact Info</h2>
-                        <p>Email: your.email@example.com</p>
-                        <p>Location: Wrocław, Poland</p>
-                        <p>GitHub: github.com/FOXjustFOX</p>
-                        <p>LinkedIn: linkedin.com/in/yourprofile</p>
+                        <p>
+                            <motion.span className="info-label">
+                                Email:
+                            </motion.span>
+                            <motion.a
+                                href="mailto:igor@lis.rocks"
+                                whileHover={{ scale: 1.05, color: "#535bf2" }}
+                                transition={{ duration: 0.2 }}>
+                                igor@lis.rocks
+                            </motion.a>
+                        </p>
+                        <p>
+                            <motion.span className="info-label">
+                                Location:
+                            </motion.span>
+                            <span style={{ marginLeft: "5px" }}>
+                                Wrocław, Poland
+                            </span>
+                        </p>
+                        <p>
+                            <motion.span className="info-label">
+                                GitHub:
+                            </motion.span>
+                            <motion.a
+                                href="https://github.com/FOXjustFOX"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                whileHover={{ scale: 1.05, color: "#535bf2" }}
+                                transition={{ duration: 0.2 }}>
+                                github.com/FOXjustFOX
+                            </motion.a>
+                        </p>
+                        <p>
+                            <motion.span className="info-label">
+                                LinkedIn:
+                            </motion.span>
+                            <motion.a
+                                href="https://www.linkedin.com/in/igor-lis-4b3923254/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                whileHover={{ scale: 1.05, color: "#535bf2" }}
+                                transition={{ duration: 0.2 }}>
+                                linkedin.com/in/igor-lis
+                            </motion.a>
+                        </p>
                     </div>
                 </motion.div>
 
@@ -103,44 +145,90 @@ const Home: React.FC = () => {
                             ease: "easeOut",
                         }}>
                         <h2>Key Projects</h2>
-                        <ul>
-                            <li>
-                                <strong>DontGetExpelled</strong> – A
-                                Python/Pygame-based game about my high school,
-                                where I led a team and handled most of the
-                                programming.
-                            </li>
-                            <li>
-                                <strong>The Girl Project</strong> – A special
-                                website for International Women's Day, designed
-                                for the most important women in my life. The
-                                website was accessed via an NFC tag hidden in an
-                                origami card and received highly positive
-                                reactions.
-                            </li>
-                            <li>
-                                <strong>
-                                    QR Code Generator for WRSS W4 at PWr
-                                </strong>{" "}
-                                – A web tool widely used by the entire
-                                Informatics and Telecommunications department at
-                                Politechnika Wrocławska.
-                            </li>
-                            <li>
-                                <strong>
-                                    Personal Server & Auto-Deploy System
-                                </strong>{" "}
-                                – I host my website and multiple APIs on a
-                                Docker-managed home server, featuring
-                                auto-deployment from GitHub with a script that
-                                updates the server's public IP.
-                            </li>
-                            <li>
-                                <strong>[Current Project]</strong> – I'm
-                                developing an app in Django and React that aims
-                                to improve students' lives in Wrocław (details
-                                confidential for now).
-                            </li>
+                        <ul className="projects-list">
+                            <motion.li
+                                whileHover={{
+                                    scale: 1.02,
+                                    backgroundColor:
+                                        "rgba(100, 108, 255, 0.08)",
+                                }}
+                                transition={{ duration: 0.2 }}>
+                                <Link
+                                    to="/projects/Dont-Get-Expelled"
+                                    className="project-home-link">
+                                    <strong>DontGetExpelled</strong> – A
+                                    Python/Pygame-based game about my high
+                                    school, where I led a team and handled most
+                                    of the programming.
+                                </Link>
+                            </motion.li>
+                            <motion.li
+                                whileHover={{
+                                    scale: 1.02,
+                                    backgroundColor:
+                                        "rgba(100, 108, 255, 0.08)",
+                                }}
+                                transition={{ duration: 0.2 }}>
+                                <Link
+                                    to="/projects/girl_project"
+                                    className="project-home-link">
+                                    <strong>The Girl Project</strong> – A
+                                    special website for International Women's
+                                    Day, designed for the most important women
+                                    in my life. The website was accessed via an
+                                    NFC tag hidden in an origami card and
+                                    received highly positive reactions.
+                                </Link>
+                            </motion.li>
+                            <motion.li
+                                whileHover={{
+                                    scale: 1.02,
+                                    backgroundColor:
+                                        "rgba(100, 108, 255, 0.08)",
+                                }}
+                                transition={{ duration: 0.2 }}>
+                                <Link
+                                    to="/projects/qrcode_gen_web"
+                                    className="project-home-link">
+                                    <strong>
+                                        QR Code Generator for WRSS W4 at PWr
+                                    </strong>{" "}
+                                    – A web tool widely used by the entire
+                                    Informatics and Telecommunications
+                                    department at Politechnika Wrocławska.
+                                </Link>
+                            </motion.li>
+                            <motion.li
+                                whileHover={{
+                                    scale: 1.02,
+                                    backgroundColor:
+                                        "rgba(100, 108, 255, 0.08)",
+                                }}
+                                transition={{ duration: 0.2 }}>
+                                <span className="project-home-link">
+                                    <strong>
+                                        Personal Server & Auto-Deploy System
+                                    </strong>{" "}
+                                    – I host my website and multiple APIs on a
+                                    Docker-managed home server, featuring
+                                    auto-deployment from GitHub with a script
+                                    that updates the server's public IP.
+                                </span>
+                            </motion.li>
+                            <motion.li
+                                whileHover={{
+                                    scale: 1.02,
+                                    backgroundColor:
+                                        "rgba(100, 108, 255, 0.08)",
+                                }}
+                                transition={{ duration: 0.2 }}>
+                                <span className="project-home-link">
+                                    <strong>[Current Project]</strong> – I'm
+                                    developing an app in Django and React that
+                                    aims to improve students' lives in Wrocław
+                                    (details confidential for now).
+                                </span>
+                            </motion.li>
                         </ul>
                     </motion.div>
 

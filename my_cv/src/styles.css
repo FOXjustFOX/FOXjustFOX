@@ -488,7 +488,41 @@ nav {
 
 .personal-info p {
     margin: 5px 0;
-    font-size: 0.9rem;
+    text-align: left;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.info-label {
+    font-weight: 600;
+    margin-right: 5px;
+    min-width: 70px;
+    display: inline-block;
+}
+
+.personal-info a {
+    color: #646cff;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    transition: color 0.2s ease;
+    margin-left: 5px;
+}
+
+.personal-info a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #535bf2;
+    transition: width 0.3s ease;
+}
+
+.personal-info a:hover::after {
+    width: 100%;
 }
 
 .cv-section {
@@ -540,6 +574,31 @@ nav {
 
 .cv-section:last-child {
     margin-bottom: 0; /* Remove excessive margin */
+}
+
+/* Interactive home page projects list styling */
+.projects-list li {
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin-bottom: 12px;
+    cursor: pointer;
+    padding: 10px 15px;
+}
+
+.project-home-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    width: 100%;
+}
+
+.project-home-link strong {
+    color: #646cff;
+    transition: color 0.2s ease;
+}
+
+.projects-list li:hover .project-home-link strong {
+    color: #535bf2;
 }
 
 @media (max-width: 768px) {
@@ -765,10 +824,18 @@ nav {
     }
 
     .personal-info p {
-        margin: 5px 0;
+        margin: 8px 0;
         font-size: 0.9rem;
-        word-wrap: break-word;
-        width: 100%;
+        flex-direction: column;
+    }
+
+    .info-label {
+        margin-bottom: 2px;
+        font-weight: 600;
+    }
+
+    .personal-info a {
+        margin-left: 0;
     }
 
     .home-content {
@@ -818,5 +885,52 @@ nav {
         gap: 10px;
         width: 100%;
         box-sizing: border-box;
+    }
+
+    .projects-list li {
+        padding: 8px 12px;
+        margin-bottom: 10px;
+    }
+}
+
+/* Loading animation styles */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 40px;
+}
+
+.loading-circle {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #646cff 0%, #8c84ff 100%);
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(100, 108, 255, 0.3);
+}
+
+.loading-container p {
+    font-size: 1.2rem;
+    color: #646cff;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .loading-container {
+        padding: 20px;
+    }
+
+    .loading-circle {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 20px;
+    }
+
+    .loading-container p {
+        font-size: 1rem;
     }
 }
