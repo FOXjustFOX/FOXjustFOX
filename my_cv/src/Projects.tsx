@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 interface Repo {
     id: number;
@@ -12,10 +12,35 @@ interface Repo {
     language: string | null;
 }
 
+const ProjectCard = ({ repo, index }: { repo: Repo; index: number }) => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+    return (
+        <motion.li
+            ref={ref}
+            key={repo.id}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{
+                duration: 0.2,
+                delay: 0.02 * index, // Sequential delay based on index
+                // ease: "easeOut",
+            }}
+            whileHover={{ scale: 1.05, transition: { duration: 0.1 } }}>
+            <Link to={`/projects/${repo.name}`} className="project-link">
+                <h3 className="repo-name">{repo.name}</h3>
+                <p>{repo.description || "No description available"}</p>
+            </Link>
+        </motion.li>
+    );
+};
+
 const Projects: React.FC = () => {
     const [repos, setRepos] = useState<Repo[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const titleRef = useRef(null);
 
     useEffect(() => {
         const cacheKey = "github_repos";
@@ -70,33 +95,41 @@ const Projects: React.FC = () => {
         fetchRepos();
     }, []);
 
-    if (loading) return <p>Loading repositories...</p>;
-    if (error) return <p>Error: {error}</p>;
+    if (loading)
+        return (
+            <div className="page">
+                <p>Loading repositories...</p>
+            </div>
+        );
+    if (error)
+        return (
+            <div className="page">
+                <p>Error: {error}</p>
+            </div>
+        );
 
     return (
         <motion.div
-            className="page"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ opacity: { duration: 0.4 } }}>
-            <h1>My GitHub Projects</h1>
-            <ul>
-                {repos.map((repo, index) => (
-                    <motion.li
-                        key={repo.id}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        whileHover={{ scale: 1.05 }}
-                        transition={{
-                            default: { duration: 0.5, delay: index * 0.1 },
-                            scale: { duration: 0, delay: 0 },
-                        }}>
-                        <Link to={`/projects/${repo.name}`}>{repo.name}</Link>
-                        <p>{repo.description || "No description available"}</p>
-                    </motion.li>
-                ))}
-            </ul>
+            className="page projects-page"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}>
+            <div className="projects-container">
+                <motion.h1
+                    ref={titleRef}
+                    className="projects-title"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}>
+                    My GitHub Projects
+                </motion.h1>
+                <ul className="projects-grid">
+                    {repos.map((repo, index) => (
+                        <ProjectCard key={repo.id} repo={repo} index={index} />
+                    ))}
+                </ul>
+            </div>
         </motion.div>
     );
 };

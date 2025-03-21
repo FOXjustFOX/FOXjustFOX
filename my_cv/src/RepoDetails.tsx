@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
@@ -19,6 +19,7 @@ const RepoDetails: React.FC = () => {
     const [readme, setReadme] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const cacheKey = `repo_${repoName}`;
@@ -52,40 +53,78 @@ const RepoDetails: React.FC = () => {
         setLoading(false);
     }, [repoName]);
 
-    if (loading) return <p>Loading repository details...</p>;
-    if (error) return <p>{error}</p>;
+    // Scroll to top when component mounts or when route changes
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [repoName]);
+
+    if (loading)
+        return (
+            <div className="page">
+                <p>Loading repository details...</p>
+            </div>
+        );
+    if (error)
+        return (
+            <div className="page">
+                <p>{error}</p>
+            </div>
+        );
 
     return (
         <motion.div
-            className="page"
-            initial={{ opacity: 0, y: 20 }} // Start animation
-            animate={{ opacity: 1, y: 0 }} // Animate when entering
-            exit={{ opacity: 0, y: -20 }} // Animate when leaving
-            transition={{ duration: 0.5 }} // Smooth transition
-        >
-            <h1>{repo?.name}</h1>
-            <p>{repo?.description || "No description available"}</p>
-            <p><strong>Language:</strong> {repo?.language || "Unknown"}</p>
-            <p><strong>Stars:</strong> {repo?.stargazers_count}</p>
-            <p><strong>Forks:</strong> {repo?.forks_count}</p>
-            <a href={repo?.html_url} target="_blank" rel="noopener noreferrer">
-                View on GitHub
-            </a>
-            <br />
-
-            {/* Display README if available */}
-            <div className="readme">
-                {readme ? (
-                    <div>
-                        <h2>📖 README</h2>
-                        <ReactMarkdown>{readme}</ReactMarkdown>
+            className="page repo-details-page"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}>
+            <div className="repo-details-container">
+                <div className="repo-details-sidebar">
+                    <div className="repo-navigation">
+                        <Link to="/projects" className="back-button">
+                            ⬅ Back to Projects
+                        </Link>
+                        <a
+                            href={repo?.html_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="github-button">
+                            View on GitHub
+                        </a>
                     </div>
-                ) : (
-                    <p>No README available.</p>
-                )}
-            </div>
 
-            <Link to="/projects">⬅ Back to Projects</Link>
+                    <h1 className="repo-title">{repo?.name}</h1>
+                    <p className="repo-description">
+                        {repo?.description || "No description available"}
+                    </p>
+
+                    <div className="repo-stats">
+                        <p>
+                            <strong>Language:</strong>{" "}
+                            {repo?.language || "Unknown"}
+                        </p>
+                        <p>
+                            <strong>Stars:</strong> {repo?.stargazers_count}
+                        </p>
+                        <p>
+                            <strong>Forks:</strong> {repo?.forks_count}
+                        </p>
+                    </div>
+                </div>
+
+                <div className="repo-details-content" ref={contentRef}>
+                    {readme ? (
+                        <div className="readme">
+                            <h2>📖 README</h2>
+                            <ReactMarkdown>{readme}</ReactMarkdown>
+                        </div>
+                    ) : (
+                        <div className="readme">
+                            <p>No README available.</p>
+                        </div>
+                    )}
+                </div>
+            </div>
         </motion.div>
     );
 };

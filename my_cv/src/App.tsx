@@ -3,10 +3,8 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion"; // Import AnimatePresence
 import Layout from "./Layout";
 import Home from "./Home";
-import About from "./About";
 import Projects from "./Projects";
 import RepoDetails from "./RepoDetails";
-
 
 import "./styles.css";
 
@@ -27,8 +25,10 @@ const App: React.FC = () => {
                     <Route element={<Layout />}>
                         <Route path="/" element={<Home />} />
                         <Route path="/projects" element={<Projects />} />
-                        <Route path="/projects/:repoName" element={<RepoDetails />} />
-                        <Route path="/about" element={<About />} />
+                        <Route
+                            path="/projects/:repoName"
+                            element={<RepoDetails />}
+                        />
                         <Route path="*" element={<NotFound />} />
                     </Route>
                 </Routes>

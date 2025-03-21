@@ -11,9 +11,6 @@ const Layout: React.FC = () => {
                 <Link className="link" to="/projects">
                     Projects
                 </Link>
-                <Link className="link" to="/about">
-                    About
-                </Link>
                 <a className="link" href="https://api.lis.rocks">
                     Solvro API
                 </a>
