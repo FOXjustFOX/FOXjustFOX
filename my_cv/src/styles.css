@@ -1,15 +1,24 @@
+:root {
+    --color-primary: #000000;
+    --color-secondary: #fdfdfd;
+    --color-tertiary: #447cff;
+
+    --color-tertiary-hover: #535bf2;
+
+    /* Colors for dark mode */
+    --color-primary-dark: #ffffff;
+    --color-secondary-dark: #1a1a1a;
+    --color-tertiary-dark: #447cff;
+}
+
 html,
 body {
     height: 100%;
     width: 100%;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    overflow-x: hidden; /* Prevent horizontal scroll */
-    padding-bottom: 0; /* Remove extra bottom padding that causes white strip */
+    padding: 0;
+    overflow-y: auto; /* Allow vertical scrolling at root level */
+    overflow-x: hidden;
 }
 
 #root {
@@ -18,31 +27,22 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Change to flex-start to allow content to flow normally */
-    overflow-y: auto; /* Allow vertical scrolling */
-    overflow-x: hidden; /* Prevent horizontal scroll */
-
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
-
-    color-scheme: light dark;
     color: rgba(0, 0, 0, 0.87);
-    background-color: #d7d7d7;
-
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-secondary);
+    overflow-y: auto; /* Allow vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 a {
     font-weight: 500;
-    color: #646cff;
+    color: var(--color-tertiary);
     text-decoration: inherit;
 }
 a:hover {
-    color: #535bf2;
+    color: var(--color-tertiary-hover); 
 }
 
 .container {
@@ -58,13 +58,17 @@ a:hover {
 }
 
 nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
     width: 100%;
     text-align: left;
-    padding: 15px;
+    padding: 0 15px;
     position: fixed;
     top: 0;
     left: 0;
-    background: white;
+    background: var(--color-secondary);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 100; /* Ensure navbar is on top */
 }
@@ -72,7 +76,7 @@ nav {
 .link {
     margin-right: 15px;
     font-weight: 500;
-    color: #646cff;
+    color: var(--color-tertiary);
     text-decoration: inherit;
 }
 
@@ -82,10 +86,10 @@ nav {
     align-items: flex-start;
     width: 100%;
     padding-top: 70px;
-    overflow-y: hidden;
     min-height: 0;
     height: auto;
     flex-direction: column; /* Default is column for all pages */
+    overflow: visible; /* Allow content to flow naturally and enable sticky behavior */
 }
 
 /* RepoDetails specific layouts */
@@ -111,7 +115,8 @@ nav {
     flex: 1;
     max-width: 300px;
     padding: 20px;
-    background-color: white;
+    margin-left: 10px;
+    background-color: var(--color-secondary);
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -151,13 +156,13 @@ nav {
 }
 
 .back-button {
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
 }
 
 .github-button {
-    background-color: #24292e;
-    color: white !important;
+    background-color: var(--color-primary);
+    color: var(--color-secondary) !important;
 }
 
 .back-button:hover,
@@ -169,11 +174,11 @@ nav {
 .repo-title {
     font-size: 1.8rem;
     margin: 0 0 10px 0;
-    color: #333;
+    color: var(--color-primary);
 }
 
 .repo-description {
-    color: #666;
+    color: var(--color-primary);
     margin-bottom: 20px;
     line-height: 1.4;
 }
@@ -214,29 +219,29 @@ nav {
 
 .page li a {
     font-weight: bold;
-    color: #646cff;
+    color: var(--color-tertiary);
     text-decoration: none;
     display: block;
     margin-bottom: 8px;
 }
 
 .page li a:hover {
-    color: #535bf2;
+    color: var(--color-tertiary);
 }
 
 .page p {
     font-size: 0.9rem;
-    color: #555;
+    color: var(--color-primary);
 }
 
 .page a {
-    color: #646cff;
+    color: var(--color-tertiary);
     font-weight: bold;
     text-decoration: none;
 }
 
 .page a:hover {
-    color: #535bf2;
+    color: var(--color-tertiary);
 }
 
 .readme {
@@ -276,11 +281,11 @@ nav {
 }
 
 .readme h2 {
-    color: #333;
+    color: var(--color-primary);
 }
 
 .readme a {
-    color: #646cff;
+    color: var(--color-tertiary);
     font-weight: bold;
     text-decoration: underline;
 }
@@ -319,7 +324,7 @@ nav {
     font-size: 2.5rem;
     margin: 20px 0 30px 0; /* Add top margin to ensure visibility */
     text-align: center;
-    color: #333;
+    color: var(--color-primary);
     align-self: center;
     width: 100%;
     position: relative; /* Help with stacking context */
@@ -380,7 +385,7 @@ nav {
 
 .repo-name {
     font-size: 1.2rem;
-    color: #646cff;
+    color: var(--color-tertiary);
     margin-top: 0;
     margin-bottom: 10px;
     font-weight: 600;
@@ -389,7 +394,7 @@ nav {
 }
 
 .projects-grid p {
-    color: #555;
+    color: var(--color-primary);
     font-size: 0.9rem;
     margin: 0;
     flex-grow: 1;
@@ -413,67 +418,53 @@ nav {
 /* Media query adjustments */
 /* Home page specific layouts - similar to RepoDetails */
 .home-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
     flex-direction: column;
-    overflow-y: visible;
-    /* min-height: 100vh; */
-    /* padding-top: 70px; Ensure content starts below navbar */
-    padding-bottom: 0; /* Remove excessive padding */
+    align-items: center;
+    overflow-x: hidden;
+    padding-top: 70px;
+    padding-bottom: 30px;
 }
 
 .home-container {
     display: flex;
     flex-direction: row;
+    gap: 20px;
     width: 100%;
     max-width: 1200px;
-    gap: 20px;
     margin: 0 auto;
-    padding: 0 20px 20px;
-    min-height: calc(100vh - 90px);
-    height: auto;
-    overflow: visible;
+    padding: 0 20px;
+    box-sizing: border-box;
+    position: relative;
 }
 
+/* Fix sidebar to ensure sticky behavior */
 .home-sidebar {
-    flex: 1;
-    max-width: 300px;
-    padding: 20px;
+    
+    width: 300px;
+    height: fit-content;
+    max-height: calc(100vh - 120px);
+    flex-shrink: 0;
     background-color: white;
+    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    min-height: min-content;
-    overflow: visible; /* Change from overflow-y to just overflow */
-    position: relative;
-    align-self: flex-start;
+   
 }
 
 .home-content {
-    flex: 3;
+    flex: 1;
     padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    height: auto;
-    max-height: calc(100vh - 120px);
-    width: 100%;
-    min-height: 400px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    text-align: left;
-    align-self: flex-start;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
+    max-width: 800px;
 }
 
 .profile-photo {
     width: 100%;
-    max-width: 250px;
+    /* max-width: 250px; */
     height: auto;
     border-radius: 8px;
-    margin: 0 auto 20px;
+    /* margin: 20px; */
     display: block;
 }
 
@@ -501,8 +492,9 @@ nav {
     display: inline-block;
 }
 
-.personal-info a {
-    color: #646cff;
+.personal-info a,
+.link p {
+    color: var(--color-tertiary);
     text-decoration: none;
     position: relative;
     display: inline-block;
@@ -510,18 +502,20 @@ nav {
     margin-left: 5px;
 }
 
-.personal-info a::after {
+.personal-info a::after,
+.link p::after {
     content: "";
     position: absolute;
     width: 0;
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: #535bf2;
+    background-color: var(--color-tertiary);
     transition: width 0.3s ease;
 }
 
-.personal-info a:hover::after {
+.personal-info a:hover::after,
+.link p:hover::after {
     width: 100%;
 }
 
@@ -531,9 +525,9 @@ nav {
 
 .cv-section h2 {
     font-size: 1.8rem;
-    color: #333;
+    color: var(--color-primary);
     margin-bottom: 15px;
-    border-bottom: 2px solid #646cff;
+    border-bottom: 2px solid var(--color-tertiary);
     padding-bottom: 5px;
 }
 
@@ -593,12 +587,17 @@ nav {
 }
 
 .project-home-link strong {
-    color: #646cff;
+    color: var(--color-tertiary);
     transition: color 0.2s ease;
 }
 
 .projects-list li:hover .project-home-link strong {
-    color: #535bf2;
+    color: var(--color-tertiary);
+}
+
+.place-label {
+    font-weight: 600;
+    margin-left: 5px;
 }
 
 @media (max-width: 768px) {
@@ -606,6 +605,11 @@ nav {
     body,
     html {
         overflow-x: hidden;
+    }
+
+    .place-label {
+        font-weight: 600;
+        margin-left: 1px;
     }
 
     .container {
@@ -623,12 +627,13 @@ nav {
     }
 
     nav {
-        padding: 10px 15px;
+        /* padding: 10px 15px; */
         width: 100%;
         box-sizing: border-box;
+        
     }
 
-    .link {
+    .link p{
         margin-right: 10px;
         font-size: 14px;
     }
@@ -648,13 +653,13 @@ nav {
         width: 100%;
         max-width: 100%;
         overflow-x: hidden;
+        height: auto;
     }
 
     .repo-details-container {
         flex-direction: column;
-        height: auto;
-        max-height: none;
-        overflow-y: auto;
+        height: 100%;
+        /* overflow-y: auto; */
         overflow-x: hidden;
         padding: 0 15px;
         margin-bottom: 20px;
@@ -669,12 +674,14 @@ nav {
         box-sizing: border-box;
         height: auto;
         overflow-y: visible;
+        margin-left: 0px;
     }
 
     .repo-details-content {
         height: auto;
-        max-height: 700px;
+        /* max-height: 700px; */
         width: 100%;
+        overflow-y: visible;
         box-sizing: border-box;
     }
 
@@ -683,8 +690,8 @@ nav {
     }
 
     .readme {
-        max-height: 60vh;
-        overflow-y: auto;
+        /* max-height: 60vh; */
+        /* overflow-y: auto; */
         width: 100%;
         box-sizing: border-box;
         overflow-x: hidden;
@@ -788,25 +795,27 @@ nav {
         overflow-y: visible;
         overflow-x: hidden;
         padding: 0 10px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         width: 100%;
         box-sizing: border-box;
+        gap: 0px;
     }
 
     .home-sidebar {
-        max-width: 100%;
-        width: calc(100% - 20px);
+        width: 100%;
+        top: 10px;
+        /* width: calc(100% - 20px); */
         padding: 15px;
         box-sizing: border-box;
         height: auto;
         overflow: visible;
-        margin: 0 auto 15px;
+        margin: 0 auto 0px;
         border-radius: 8px;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        /* box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); */
     }
 
     .profile-photo {
-        max-width: 150px;
+        max-width: 100%;
         margin: 0 auto 15px;
     }
 
@@ -826,7 +835,7 @@ nav {
     .personal-info p {
         margin: 8px 0;
         font-size: 0.9rem;
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .info-label {
@@ -846,10 +855,10 @@ nav {
         padding: 15px;
         margin: 0 auto;
         border-radius: 8px;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        /* box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); */
         box-sizing: border-box;
-        overflow-x: hidden;
-        overflow-y: visible;
+        overflow: hidden;
+
         display: block;
     }
 
@@ -891,11 +900,59 @@ nav {
         padding: 8px 12px;
         margin-bottom: 10px;
     }
+
+    .home-sidebar-wrapper {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+    .home-sidebar {
+        width: 100%;
+        top: 10px;
+        /* width: calc(100% - 20px); */
+        padding: 15px;
+        box-sizing: border-box;
+        height: auto;
+        overflow: visible;
+        margin: 0 auto 0px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-self: flex-start;
+        gap: 10px;
+    }
+
+    .profile-photo {
+        max-width: 45%;
+        /* margin: 0 auto 15px; */
+    }
+
+    .personal-info {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 15px;
+    }
+
+    .personal-info h1 {
+        /* font-size: 1.4rem; */
+        margin-bottom: 10px;
+        margin-top: 0px;
+        word-wrap: break-word;
+        width: 100%;
+    }
+    
+    
+    
 }
 
 /* Loading animation styles */
 .loading-container {
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -914,7 +971,7 @@ nav {
 
 .loading-container p {
     font-size: 1.2rem;
-    color: #646cff;
+    color: var(--color-tertiary);
     font-weight: 500;
     margin-top: 10px;
 }
@@ -933,4 +990,21 @@ nav {
     .loading-container p {
         font-size: 1rem;
     }
+}
+
+html,
+body,
+#root {
+    overflow-y: auto; /* Enable scrolling at the document level */
+    height: auto;
+    min-height: 100vh;
+}
+
+/* Add this to ensure the wrapper has proper dimensions */
+.home-sidebar-wrapper {
+    position: relative;
+    width: 300px;
+    flex-shrink: 0;
+    height: 100%;
+    margin-right: 20px;
 }

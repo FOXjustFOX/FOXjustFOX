@@ -6,10 +6,10 @@ const Layout: React.FC = () => {
         <div className="container">
             <nav>
                 <Link className="link" to="/">
-                    Home
+                    <p>Home</p>
                 </Link>
                 <Link className="link" to="/projects">
-                    Projects
+                    <p>Projects</p>
                 </Link>
                 {/* <a className="link" href="https://api.lis.rocks">
                     Solvro API

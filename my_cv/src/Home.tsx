@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 const Home: React.FC = () => {
     // References for scroll animations
-    const sidebarRef = useRef(null);
     const aboutRef = useRef(null);
     const projectsRef = useRef(null);
     const skillsRef = useRef(null);
@@ -14,7 +13,6 @@ const Home: React.FC = () => {
     const educationRef = useRef(null);
 
     // Check if elements are in view
-    const isSidebarInView = useInView(sidebarRef, { once: true, amount: 0.2 });
     const isAboutInView = useInView(aboutRef, { once: true, amount: 0.2 });
     const isProjectsInView = useInView(projectsRef, {
         once: true,
@@ -40,70 +38,74 @@ const Home: React.FC = () => {
             transition={{ duration: 0.4 }}>
             <div className="home-container">
                 {/* Left column - Photo and personal info */}
-                <motion.div
-                    className="home-sidebar"
-                    ref={sidebarRef}
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={
-                        isSidebarInView
-                            ? { opacity: 1, x: 0 }
-                            : { opacity: 0, x: -50 }
-                    }
-                    transition={{ duration: 0.5, ease: "easeOut" }}>
-                    <img
-                        src={profilePhoto}
-                        alt="Profile Photo"
-                        className="profile-photo"
-                    />
-                    <div className="personal-info">
-                        <h2>Contact Info</h2>
-                        <p>
-                            <motion.span className="info-label">
-                                Email:
-                            </motion.span>
-                            <motion.a
-                                href="mailto:igor@lis.rocks"
-                                whileHover={{ scale: 1.05, color: "#535bf2" }}
-                                transition={{ duration: 0.2 }}>
-                                igor@lis.rocks
-                            </motion.a>
-                        </p>
-                        <p>
-                            <motion.span className="info-label">
-                                Location:
-                            </motion.span>
-                            <span style={{ marginLeft: "5px" }}>
-                                Wrocław, Poland
-                            </span>
-                        </p>
-                        <p>
-                            <motion.span className="info-label">
-                                GitHub:
-                            </motion.span>
-                            <motion.a
-                                href="https://github.com/FOXjustFOX"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                whileHover={{ scale: 1.05, color: "#535bf2" }}
-                                transition={{ duration: 0.2 }}>
-                                github.com/FOXjustFOX
-                            </motion.a>
-                        </p>
-                        <p>
-                            <motion.span className="info-label">
-                                LinkedIn:
-                            </motion.span>
-                            <motion.a
-                                href="https://www.linkedin.com/in/igor-lis-4b3923254/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                whileHover={{ scale: 1.05, color: "#535bf2" }}
-                                transition={{ duration: 0.2 }}>
-                                linkedin.com/in/igor-lis
-                            </motion.a>
-                        </p>
-                    </div>
-                </motion.div>
+                    <motion.div
+                        className="home-sidebar"
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}>
+                        <img
+                            src={profilePhoto}
+                            alt="Profile Photo"
+                            className="profile-photo"
+                        />
+                        <div className="personal-info">
+                            <h1>Igor Lis</h1>
+                            <p>
+                                <motion.span className="info-label">
+                                    Email:
+                                </motion.span>
+                                <motion.a
+                                    href="mailto:igor@lis.rocks"
+                                    whileHover={{
+                                        scale: 1.05,
+                                        color: "#535bf2",
+                                    }}
+                                    transition={{ duration: 0.2 }}>
+                                    igor@lis.rocks
+                                </motion.a>
+                            </p>
+                            <p>
+                                <motion.span className="info-label">
+                                    Location:
+                                </motion.span>
+                                <span className="place-label">
+                                    Wrocław, Poland
+                                </span>
+                            </p>
+                            <p>
+                                <motion.span className="info-label">
+                                    GitHub:
+                                </motion.span>
+                                <motion.a
+                                    href="https://github.com/FOXjustFOX"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    whileHover={{
+                                        scale: 1.05,
+                                        color: "#535bf2",
+                                    }}
+                                    transition={{ duration: 0.2 }}>
+                                    FOXjustFOX
+                                </motion.a>
+                            </p>
+                            <p>
+                                <motion.span className="info-label">
+                                    LinkedIn:
+                                </motion.span>
+                                <motion.a
+                                    href="https://www.linkedin.com/in/igor-lis-4b3923254/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    whileHover={{
+                                        scale: 1.05,
+                                        color: "#535bf2",
+                                    }}
+                                    transition={{ duration: 0.2 }}>
+                                    igor-lis
+                                </motion.a>
+                            </p>
+                        </div>
+                    </motion.div>
 
                 {/* Right column - CV content */}
                 <div className="home-content">
