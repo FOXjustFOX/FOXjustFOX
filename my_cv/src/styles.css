@@ -992,13 +992,7 @@ nav {
     }
 }
 
-html,
-body,
-#root {
-    overflow-y: auto; /* Enable scrolling at the document level */
-    height: auto;
-    min-height: 100vh;
-}
+
 
 /* Add this to ensure the wrapper has proper dimensions */
 .home-sidebar-wrapper {
@@ -1007,4 +1001,219 @@ body,
     flex-shrink: 0;
     height: 100%;
     margin-right: 20px;
+}
+
+/* File Explorer Page Styles */
+.file-explorer-page {
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 70px;
+    padding-bottom: 30px;
+    min-height: 100vh;
+}
+
+.file-explorer-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.file-explorer-title {
+    font-size: 2.5rem;
+    margin: 20px 0 30px 0;
+    text-align: center;
+    color: var(--color-primary);
+    align-self: center;
+    width: 100%;
+}
+
+.json-input-section {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 30px;
+    align-self: center;
+}
+
+.json-input-section h2 {
+    margin-bottom: 10px;
+    color: var(--color-primary);
+}
+
+.helper-text {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.json-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: monospace;
+    resize: vertical;
+    margin-bottom: 15px;
+    background-color: #f8f8f8;
+    font-size: 14px;
+}
+
+.json-submit-button {
+    background-color: var(--color-tertiary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.json-submit-button:hover {
+    background-color: var(--color-tertiary-hover);
+}
+
+.json-error {
+    color: #d32f2f;
+    background-color: #ffebee;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.file-explorer-layout {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.file-tree-panel {
+    width: 300px;
+    flex-shrink: 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.file-tree-panel h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--color-primary);
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.file-content-panel {
+    flex: 1;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.file-system-node {
+    margin-bottom: 2px;
+}
+
+.file-system-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.file-system-item:hover {
+    background-color: rgba(100, 108, 255, 0.08);
+}
+
+.file-system-item.folder {
+    font-weight: 500;
+    color: var(--color-tertiary);
+}
+
+.file-system-item.link {
+    color: #2196F3;
+}
+
+.file-icon {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+.file-name {
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.no-file-selected {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    color: #666;
+}
+
+.file-hint {
+    font-size: 0.9rem;
+    color: #999;
+    margin-top: 10px;
+}
+
+.file-viewer {
+    width: 100%;
+}
+
+.file-path {
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    color: var(--color-primary);
+}
+
+.file-loading, .file-tree-loading {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+}
+
+.file-error {
+    padding: 20px;
+    text-align: center;
+    color: #d32f2f;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .file-explorer-layout {
+        flex-direction: column;
+    }
+    
+    .file-tree-panel {
+        width: 100%;
+        max-height: 300px;
+    }
+    
+    .file-content-panel {
+        max-height: none;
+    }
+    
+    .json-textarea {
+        height: 150px;
+    }
 }

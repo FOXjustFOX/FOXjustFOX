@@ -5,6 +5,7 @@ import Layout from "./Layout";
 import Home from "./Home";
 import Projects from "./Projects";
 import RepoDetails from "./RepoDetails";
+import FileExplorer from "./FileExplorer"; // Import the FileExplorer component
 
 import "./styles.css";
 
@@ -29,6 +30,7 @@ const App: React.FC = () => {
                             path="/projects/:repoName"
                             element={<RepoDetails />}
                         />
+                        <Route path="/files" element={<FileExplorer />} />
                         <Route path="*" element={<NotFound />} />
                     </Route>
                 </Routes>

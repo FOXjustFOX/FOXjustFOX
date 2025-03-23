@@ -1,36 +1,50 @@
+<div className="json-input-section">
+<h2>Custom File Structure</h2>
+<p className="helper-text">
+    Enter a JSON structure for custom file organization or
+    use the default one. Links will open in a new tab, files
+    will display their content.
+</p>
+{error && <div className="json-error">{error}</div>}
+<textarea
+    className="json-textarea"
+    value={jsonInput}
+    onChange={(e) => setJsonInput(e.target.value)}
+    placeholder={`[
 {
-    "id": 21000,
-    "name": "Mojito-igor-test",
-    "category": "Cocktail",
-    "glass": "Highball glass",
-    "instructions": "Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with cracked ice. Pour the rum and top with soda water. Garnish and serve with straw.",
-    "imageUrl": "https://cocktails.solvro.pl/images/ingredients/mojito.png",
-    "alcoholic": true,
-    "ingredients": [
-        {
-            "measure": "Juice of 1 ",
-            "ingredient_id": 312,
-            "cocktail_id": 21000
-        },
-        {
-            "measure": "2-4 ",
-            "ingredient_id": 337,
-            "cocktail_id": 21000
-        },
-        {
-            "measure": "2 tsp ",
-            "ingredient_id": 476,
-            "cocktail_id": 21000
-        },
-        {
-            "measure": "2-3 oz ",
-            "ingredient_id": 617,
-            "cocktail_id": 21000
-        },
-        {
-            "measure": null,
-            "ingredient_id": 618,
-            "cocktail_id": 21000
-        }
-    ]
+"name": "files",
+"type": "folder",
+"children": [
+{
+"name": "statystyka",
+"type": "folder",
+"children": [
+{ "name": "lista_1.py", "type": "file", "path": "statystyka/lista_1.py" }
+]
 },
+{ "name": "GitHub", "type": "link", "url": "https://github.com/FOXjustFOX" }
+]
+}
+]`}
+    rows={10}
+/>
+<button
+    className="json-submit-button"
+    onClick={handleJsonSubmit}>
+    Update Structure
+</button>
+</div>
+
+const [jsonInput, setJsonInput] = useState<string>("");
+const [error, setError] = useState<string | null>(null);
+
+const handleJsonSubmit = () => {
+    try {
+        const parsedStructure = JSON.parse(jsonInput);
+        setFileStructure(parsedStructure);
+        setError(null);
+        setSelectedFile(null); // Reset selected file when structure changes
+    } catch  {
+        setError("Invalid JSON format. Please check your input.");
+    }
+};

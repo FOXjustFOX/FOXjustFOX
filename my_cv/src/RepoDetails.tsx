@@ -113,7 +113,7 @@ const RepoDetails: React.FC = () => {
                         `https://api.github.com/repos/${username}/${repoName}`
                     );
                     setRepo(repoResponse.data);
-                    console.log(repoResponse.data);
+                    // console.log(repoResponse.data);
 
                     // Store with timestamp
                     sessionStorage.setItem(

@@ -101,7 +101,7 @@ const Home: React.FC = () => {
                                         color: "#535bf2",
                                     }}
                                     transition={{ duration: 0.2 }}>
-                                    igor-lis
+                                    Igor Lis
                                 </motion.a>
                             </p>
                         </div>
