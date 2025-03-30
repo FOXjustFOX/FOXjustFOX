@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import hljs from "highlight.js";
+import "highlight.js/styles/vs2015.css";
 
 // Define the structure of our file/folder items
 interface FileSystemItem {
@@ -29,17 +29,17 @@ const FileViewer: React.FC<FileViewerProps> = ({ filepath }) => {
         const languageMap: { [key: string]: string } = {
             py: "python",
             js: "javascript",
-            jsx: "jsx",
+            jsx: "javascript",
             ts: "typescript",
-            tsx: "tsx",
+            tsx: "typescript",
             html: "html",
             css: "css",
             json: "json",
             md: "markdown",
-            txt: "text",
+            txt: "plaintext",
         };
 
-        return languageMap[extension || ""] || "text";
+        return languageMap[extension || ""] || "plaintext";
     };
 
     useEffect(() => {
@@ -61,25 +61,36 @@ const FileViewer: React.FC<FileViewerProps> = ({ filepath }) => {
         fetchFileContent();
     }, [filepath]);
 
+    useEffect(() => {
+        // Highlight all code blocks when content changes
+        if (content) {
+            hljs.highlightAll();
+        }
+    }, [content]);
+
     if (loading)
         return <div className="file-loading">Loading file content...</div>;
     if (error) return <div className="file-error">{error}</div>;
 
+    const language = getLanguageFromPath(filepath);
+    const highlightedCode = hljs.highlight(content, { language }).value;
+
     return (
         <div className="file-viewer">
             <h3 className="file-path">{filepath}</h3>
-            <SyntaxHighlighter
-                language={getLanguageFromPath(filepath)}
-                style={vscDarkPlus}
-                customStyle={{
+            <pre
+                className="hljs"
+                style={{
                     borderRadius: "8px",
                     padding: "15px",
                     marginTop: "10px",
-                }}
-                wrapLines={true}
-                showLineNumbers={true}>
-                {content}
-            </SyntaxHighlighter>
+                    position: "relative",
+                }}>
+                <code
+                    className={`language-${language}`}
+                    dangerouslySetInnerHTML={{ __html: highlightedCode }}
+                />
+            </pre>
         </div>
     );
 };
@@ -164,7 +175,6 @@ const FileExplorer: React.FC = () => {
     );
     const [loadingStructure, setLoadingStructure] = useState<boolean>(true);
 
-
     useEffect(() => {
         // Load the default file structure
         const loadFileStructure = async () => {
@@ -244,8 +254,6 @@ const FileExplorer: React.FC = () => {
         }
     };
 
-
-
     return (
         <motion.div
             className="page file-explorer-page"
@@ -255,8 +263,6 @@ const FileExplorer: React.FC = () => {
             transition={{ duration: 0.5 }}>
             <div className="file-explorer-container">
                 <h1 className="file-explorer-title">File Explorer</h1>
-
-
 
                 <div className="file-explorer-layout">
                     <div className="file-tree-panel">
