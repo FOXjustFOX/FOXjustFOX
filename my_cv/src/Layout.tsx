@@ -15,7 +15,7 @@ const Layout: React.FC = () => {
                     <p>Files</p>
                 </Link> */}
                 <a className="link" href="https://winietki.lis.rocks">
-                    Generator winietek
+                    <p>Generator winietek</p>
                 </a>
             </nav>
             <Outlet /> {/* This is where child routes will be rendered */}
