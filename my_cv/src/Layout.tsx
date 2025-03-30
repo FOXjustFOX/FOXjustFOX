@@ -11,9 +11,9 @@ const Layout: React.FC = () => {
                 <Link className="link" to="/projects">
                     <p>Projects</p>
                 </Link>
-                {/* <Link className="link" to="/files">
+                <Link className="link" to="/files">
                     <p>Files</p>
-                </Link> */}
+                </Link>
                 <a className="link" href="https://winietki.lis.rocks">
                     <p>Generator winietek</p>
                 </a>
