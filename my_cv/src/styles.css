@@ -42,7 +42,7 @@ a {
     text-decoration: inherit;
 }
 a:hover {
-    color: var(--color-tertiary-hover); 
+    color: var(--color-tertiary-hover);
 }
 
 .container {
@@ -136,6 +136,9 @@ nav {
     overflow: hidden; /* Prevent content overflow */
     box-sizing: border-box;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 /* Navigation and button styles for repo details */
@@ -251,13 +254,13 @@ nav {
     background: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: 100%;
-    height: 100%; /* Fill parent container */
+    flex: 1;
     text-align: left;
     overflow-wrap: break-word;
-    overflow-y: auto; /* Allow scrolling within readme */
-    overflow-x: hidden; /* Prevent horizontal overflow */
-    box-sizing: border-box; /* Include padding in width calculation */
-    max-width: 100%; /* Ensure it never exceeds container width */
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 .readme * {
@@ -442,7 +445,6 @@ nav {
 
 /* Fix sidebar to ensure sticky behavior */
 .home-sidebar {
-    
     width: 300px;
     height: fit-content;
     max-height: calc(100vh - 120px);
@@ -450,7 +452,6 @@ nav {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-   
 }
 
 .home-content {
@@ -630,10 +631,9 @@ nav {
         /* padding: 10px 15px; */
         width: 100%;
         box-sizing: border-box;
-        
     }
 
-    .link p{
+    .link p {
         margin-right: 10px;
         font-size: 14px;
     }
@@ -683,6 +683,7 @@ nav {
         width: 100%;
         overflow-y: visible;
         box-sizing: border-box;
+        gap: 15px;
     }
 
     .repo-title {
@@ -944,9 +945,6 @@ nav {
         word-wrap: break-word;
         width: 100%;
     }
-    
-    
-    
 }
 
 /* Loading animation styles */
@@ -991,8 +989,6 @@ nav {
         font-size: 1rem;
     }
 }
-
-
 
 /* Add this to ensure the wrapper has proper dimensions */
 .home-sidebar-wrapper {
@@ -1144,7 +1140,7 @@ nav {
 }
 
 .file-system-item.link {
-    color: #2196F3;
+    color: #2196f3;
 }
 
 .file-icon {
@@ -1186,7 +1182,8 @@ nav {
     color: var(--color-primary);
 }
 
-.file-loading, .file-tree-loading {
+.file-loading,
+.file-tree-loading {
     padding: 20px;
     text-align: center;
     color: #666;
@@ -1203,17 +1200,165 @@ nav {
     .file-explorer-layout {
         flex-direction: column;
     }
-    
+
     .file-tree-panel {
         width: 100%;
         max-height: 300px;
     }
-    
+
     .file-content-panel {
         max-height: none;
     }
-    
+
     .json-textarea {
         height: 150px;
+    }
+}
+
+.file-explorer-section {
+    margin: 0;
+    padding: 15px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.file-explorer-section h2 {
+    margin: 0 0 15px 0;
+    color: var(--color-primary);
+    font-size: 1.5rem;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .repo-details-content {
+        height: auto;
+        width: 100%;
+        overflow-y: visible;
+        box-sizing: border-box;
+        gap: 15px;
+    }
+
+    .readme {
+        width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .file-explorer-section {
+        width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .file-explorer-section h2 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+}
+
+.file-explorer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.file-system {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    background: var(--color-secondary);
+    border-radius: 8px;
+}
+
+.file-system-node {
+    margin: 5px 0;
+}
+
+.file-system-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.file-system-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.file-icon {
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+
+.file-name {
+    color: var(--color-primary);
+    font-size: 0.9em;
+}
+
+.file-viewer {
+    flex: 2;
+    overflow-y: auto;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.file-path {
+    margin: 0 0 10px 0;
+    color: var(--color-primary);
+    font-size: 1.1em;
+}
+
+.file-loading,
+.file-error {
+    padding: 15px;
+    text-align: center;
+    color: var(--color-primary);
+}
+
+.file-error {
+    color: #ff4444;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .file-explorer {
+        flex-direction: column;
+        height: auto;
+        gap: 15px;
+    }
+
+    .file-system {
+        max-height: 300px;
+    }
+
+    .file-viewer {
+        min-height: 300px;
+    }
+
+    .file-system-item {
+        padding: 6px;
+    }
+
+    .file-icon {
+        font-size: 1.1em;
+    }
+
+    .file-name {
+        font-size: 0.85em;
     }
 }

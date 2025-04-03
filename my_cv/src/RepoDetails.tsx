@@ -3,6 +3,9 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import axios from "axios";
+import FileExplorer from "./FileExplorer";
+import hljs from "highlight.js";
+import "highlight.js/styles/vs2015.css";
 
 // Loading component with animation
 const LoadingAnimation = () => {
@@ -50,6 +53,14 @@ interface Repo {
     language: string | null;
 }
 
+interface FileSystemItem {
+    name: string;
+    type: "file" | "folder" | "link";
+    path?: string;
+    url?: string;
+    children?: FileSystemItem[];
+}
+
 const RepoDetails: React.FC = () => {
     const { repoName } = useParams<{ repoName: string }>();
     const navigate = useNavigate();
@@ -57,6 +68,10 @@ const RepoDetails: React.FC = () => {
     const [readme, setReadme] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [error] = useState<string | null>(null);
+    const [selectedFile, setSelectedFile] = useState<FileSystemItem | null>(
+        null
+    );
+    const [fileContent, setFileContent] = useState<string | null>(null);
     const contentRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -176,6 +191,56 @@ const RepoDetails: React.FC = () => {
         window.scrollTo(0, 0);
     }, [repoName]);
 
+    // Function to determine language from file extension
+    const getLanguageFromPath = (path: string) => {
+        const extension = path.split(".").pop()?.toLowerCase();
+        const languageMap: { [key: string]: string } = {
+            py: "python",
+            js: "javascript",
+            jsx: "javascript",
+            ts: "typescript",
+            tsx: "typescript",
+            html: "html",
+            css: "css",
+            json: "json",
+            md: "markdown",
+            txt: "plaintext",
+        };
+        return languageMap[extension || ""] || "plaintext";
+    };
+
+    // Function to fetch file content
+    const fetchFileContent = async (filepath: string) => {
+        try {
+            const username = "FOXjustFOX";
+            const response = await axios.get(
+                `https://api.github.com/repos/${username}/${repoName}/contents/${filepath}`,
+                {
+                    headers: {
+                        Accept: "application/vnd.github.v3.raw",
+                    },
+                }
+            );
+            setFileContent(response.data);
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching file content:", error);
+            setFileContent(null);
+            return null;
+        }
+    };
+
+    // Handle file selection
+    const handleFileSelect = async (file: FileSystemItem) => {
+        if (file.type === "file" && file.path) {
+            setSelectedFile(file);
+            const content = await fetchFileContent(file.path);
+            if (content) {
+                setFileContent(content);
+            }
+        }
+    };
+
     if (loading)
         return (
             <motion.div
@@ -233,17 +298,62 @@ const RepoDetails: React.FC = () => {
                             <strong>Forks:</strong> {repo?.forks_count}
                         </p>
                     </div>
+
+                    <div className="file-explorer-section">
+                        <h2>📁 Repository Files</h2>
+                        <FileExplorer onFileSelect={handleFileSelect} />
+                    </div>
                 </div>
 
                 <div className="repo-details-content" ref={contentRef}>
-                    {readme ? (
+                    {selectedFile ? (
                         <div className="readme">
-                            <h2>📖 README</h2>
-                            <ReactMarkdown>{readme}</ReactMarkdown>
+                            <h2>📄 {selectedFile.name}</h2>
+                            {fileContent ? (
+                                selectedFile.name.toLowerCase() ===
+                                "readme.md" ? (
+                                    <ReactMarkdown>
+                                        {readme || "No README available."}
+                                    </ReactMarkdown>
+                                ) : (
+                                    <pre
+                                        className="hljs"
+                                        style={{
+                                            borderRadius: "8px",
+                                            padding: "15px",
+                                            marginTop: "10px",
+                                        }}>
+                                        <code
+                                            className={`language-${getLanguageFromPath(
+                                                selectedFile.path || ""
+                                            )}`}
+                                            dangerouslySetInnerHTML={{
+                                                __html: hljs.highlight(
+                                                    fileContent || "",
+                                                    {
+                                                        language:
+                                                            getLanguageFromPath(
+                                                                selectedFile.path ||
+                                                                    ""
+                                                            ),
+                                                    }
+                                                ).value,
+                                            }}
+                                        />
+                                    </pre>
+                                )
+                            ) : (
+                                <div className="file-loading">
+                                    Loading file content...
+                                </div>
+                            )}
                         </div>
                     ) : (
                         <div className="readme">
-                            <p>No README available.</p>
+                            <h2>📖 README</h2>
+                            <ReactMarkdown>
+                                {readme || "No README available."}
+                            </ReactMarkdown>
                         </div>
                     )}
                 </div>

@@ -30,7 +30,16 @@ const App: React.FC = () => {
                             path="/projects/:repoName"
                             element={<RepoDetails />}
                         />
-                        <Route path="/files" element={<FileExplorer />} />
+                        <Route
+                            path="/files"
+                            element={
+                                <FileExplorer
+                                    onFileSelect={(file) =>
+                                        console.log("Selected file:", file)
+                                    }
+                                />
+                            }
+                        />
                         <Route path="*" element={<NotFound />} />
                     </Route>
                 </Routes>
