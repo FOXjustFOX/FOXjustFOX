@@ -5,6 +5,4 @@ services:
     build:
       context: ./my_cv
       dockerfile: Dockerfile
-    ports:
-      - "80:80"
     restart: always
