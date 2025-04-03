@@ -5,4 +5,6 @@ services:
     build:
       context: ./my_cv
       dockerfile: Dockerfile
+    expose:
+      - "80"
     restart: always
