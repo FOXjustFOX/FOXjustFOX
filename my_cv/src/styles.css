@@ -126,6 +126,7 @@ nav {
     overflow: visible; /* Change from overflow-y to just overflow */
     position: relative;
     align-self: flex-start;
+    box-sizing: border-box;
 }
 
 .repo-details-content {
@@ -1276,9 +1277,11 @@ nav {
 .file-system {
     flex: 1;
     overflow-y: auto;
+    height: min-content;
     padding: 10px;
     background: var(--color-secondary);
     border-radius: 8px;
+    box-sizing: border-box;
 }
 
 .file-system-node {
