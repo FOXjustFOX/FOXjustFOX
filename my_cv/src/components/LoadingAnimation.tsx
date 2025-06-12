@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 const LoadingAnimation = () => {
     return (
         <motion.div
-            className="loading-container"
+            className="flex flex-col items-center justify-center space-y-6 p-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}>
             <motion.div
-                className="loading-circle"
+                className="w-16 h-16 bg-gradient-primary rounded-full shadow-lg shadow-primary/30"
                 animate={{
                     scale: [1, 1.2, 1],
                     rotate: [0, 360],
@@ -22,6 +22,7 @@ const LoadingAnimation = () => {
                 }}
             />
             <motion.p
+                className="text-lg text-gray-300 font-medium"
                 animate={{
                     opacity: [0.5, 1, 0.5],
                 }}

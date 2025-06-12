@@ -4,62 +4,10 @@ import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import axios from "axios";
 import FileExplorer from "./FileExplorer";
+import { LoadingAnimation } from "./components";
+import { Repo, FileSystemItem } from "./types";
 import hljs from "highlight.js";
 import "highlight.js/styles/vs2015.css";
-
-// Loading component with animation
-const LoadingAnimation = () => {
-    return (
-        <motion.div
-            className="loading-container"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}>
-            <motion.div
-                className="loading-circle"
-                animate={{
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 360],
-                    borderRadius: ["20%", "50%", "20%"],
-                }}
-                transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
-            />
-            <motion.p
-                animate={{
-                    opacity: [0.5, 1, 0.5],
-                }}
-                transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}>
-                Loading repository details...
-            </motion.p>
-        </motion.div>
-    );
-};
-
-interface Repo {
-    id: number;
-    name: string;
-    html_url: string;
-    description: string | null;
-    stargazers_count: number;
-    forks_count: number;
-    language: string | null;
-}
-
-interface FileSystemItem {
-    name: string;
-    type: "file" | "folder" | "link";
-    path?: string;
-    url?: string;
-    children?: FileSystemItem[];
-}
 
 const RepoDetails: React.FC = () => {
     const { repoName } = useParams<{ repoName: string }>();
@@ -261,99 +209,123 @@ const RepoDetails: React.FC = () => {
 
     return (
         <motion.div
-            className="page repo-details-page"
+            className="page min-h-screen pt-20"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}>
-            <div className="repo-details-container">
-                <div className="repo-details-sidebar">
-                    <div className="repo-navigation">
-                        <Link to="/projects" className="back-button">
-                            ⬅ Back to Projects
-                        </Link>
-                        <a
-                            href={repo?.html_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="github-button">
-                            View on GitHub
-                        </a>
+            <div className="flex flex-col lg:flex-row max-w-7xl mx-auto px-6 gap-6">
+                {/* Sidebar */}
+                <div className="lg:w-1/3 space-y-6">
+                    <div className="card">
+                        <div className="flex flex-col sm:flex-row gap-3 mb-6">
+                            <Link
+                                to="/projects"
+                                className="btn-secondary flex items-center justify-center">
+                                ⬅ Back to Projects
+                            </Link>
+                            <a
+                                href={repo?.html_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-primary flex items-center justify-center">
+                                View on GitHub
+                            </a>
+                        </div>
+
+                        <h1 className="text-2xl font-bold text-primary mb-3">
+                            {repo?.name}
+                        </h1>
+                        <p className="text-gray-300 mb-4">
+                            {repo?.description || "No description available"}
+                        </p>
+
+                        <div className="space-y-2 text-sm">
+                            <div className="flex justify-between">
+                                <span className="text-gray-400">Language:</span>
+                                <span className="text-white">
+                                    {repo?.language || "Unknown"}
+                                </span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-gray-400">Stars:</span>
+                                <span className="text-white">
+                                    ⭐ {repo?.stargazers_count}
+                                </span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-gray-400">Forks:</span>
+                                <span className="text-white">
+                                    🍴 {repo?.forks_count}
+                                </span>
+                            </div>
+                        </div>
                     </div>
 
-                    <h1 className="repo-title">{repo?.name}</h1>
-                    <p className="repo-description">
-                        {repo?.description || "No description available"}
-                    </p>
-
-                    <div className="repo-stats">
-                        <p>
-                            <strong>Language:</strong>{" "}
-                            {repo?.language || "Unknown"}
-                        </p>
-                        <p>
-                            <strong>Stars:</strong> {repo?.stargazers_count}
-                        </p>
-                        <p>
-                            <strong>Forks:</strong> {repo?.forks_count}
-                        </p>
-                    </div>
-
-                    <div className="file-explorer-section">
-                        <h2>📁 Repository Files</h2>
-                        <FileExplorer onFileSelect={handleFileSelect} />
+                    <div className="card">
+                        <h2 className="text-lg font-semibold mb-4 flex items-center">
+                            📁 Repository Files
+                        </h2>
+                        <div className="bg-gray-900 rounded-lg p-4">
+                            <FileExplorer onFileSelect={handleFileSelect} />
+                        </div>
                     </div>
                 </div>
 
-                <div className="repo-details-content" ref={contentRef}>
+                {/* Main content */}
+                <div className="lg:w-2/3" ref={contentRef}>
                     {selectedFile ? (
-                        <div className="readme">
-                            <h2>📄 {selectedFile.name}</h2>
+                        <div className="card">
+                            <h2 className="text-xl font-semibold mb-4 flex items-center text-primary">
+                                📄 {selectedFile.name}
+                            </h2>
                             {fileContent ? (
                                 selectedFile.name.toLowerCase() ===
                                 "readme.md" ? (
-                                    <ReactMarkdown>
-                                        {readme || "No README available."}
-                                    </ReactMarkdown>
+                                    <div className="prose prose-invert max-w-none">
+                                        <ReactMarkdown>
+                                            {readme || "No README available."}
+                                        </ReactMarkdown>
+                                    </div>
                                 ) : (
-                                    <pre
-                                        className="hljs"
-                                        style={{
-                                            borderRadius: "8px",
-                                            padding: "15px",
-                                            marginTop: "10px",
-                                        }}>
-                                        <code
-                                            className={`language-${getLanguageFromPath(
-                                                selectedFile.path || ""
-                                            )}`}
-                                            dangerouslySetInnerHTML={{
-                                                __html: hljs.highlight(
-                                                    fileContent || "",
-                                                    {
-                                                        language:
-                                                            getLanguageFromPath(
-                                                                selectedFile.path ||
-                                                                    ""
-                                                            ),
-                                                    }
-                                                ).value,
-                                            }}
-                                        />
-                                    </pre>
+                                    <div className="bg-gray-900 rounded-lg overflow-hidden">
+                                        <pre className="hljs p-4 text-sm overflow-x-auto">
+                                            <code
+                                                className={`language-${getLanguageFromPath(
+                                                    selectedFile.path || ""
+                                                )}`}
+                                                dangerouslySetInnerHTML={{
+                                                    __html: hljs.highlight(
+                                                        fileContent || "",
+                                                        {
+                                                            language:
+                                                                getLanguageFromPath(
+                                                                    selectedFile.path ||
+                                                                        ""
+                                                                ),
+                                                        }
+                                                    ).value,
+                                                }}
+                                            />
+                                        </pre>
+                                    </div>
                                 )
                             ) : (
-                                <div className="file-loading">
-                                    Loading file content...
+                                <div className="flex items-center justify-center py-8">
+                                    <LoadingAnimation />
                                 </div>
                             )}
                         </div>
                     ) : (
-                        <div className="readme">
-                            <h2>📖 README</h2>
-                            <ReactMarkdown>
-                                {readme || "No README available."}
-                            </ReactMarkdown>
+                        <div className="card">
+                            <h2 className="text-xl font-semibold mb-4 flex items-center text-primary">
+                                📖 README
+                            </h2>
+                            <div className="prose prose-invert max-w-none">
+                                <ReactMarkdown>
+                                    {readme || "No README available."}
+                                </ReactMarkdown>
+                            </div>
                         </div>
                     )}
                 </div>

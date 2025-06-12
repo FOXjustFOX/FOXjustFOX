@@ -133,12 +133,16 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ onFileSelect }) => {
     };
 
     if (loadingStructure) {
-        return <div className="file-loading">Loading file structure...</div>;
+        return (
+            <div className="flex items-center justify-center text-gray-300">
+                Loading file structure...
+            </div>
+        );
     }
 
     return (
-        <div className="file-explorer">
-            <div className="file-system">
+        <div className="w-full max-w-4xl mx-auto">
+            <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
                 {fileStructure.map((item, index) => (
                     <FileSystemNode
                         key={index}

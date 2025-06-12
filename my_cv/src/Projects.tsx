@@ -76,27 +76,27 @@ const Projects: React.FC = () => {
     if (error)
         return (
             <div className="page">
-                <p>Error: {error}</p>
+                <p className="text-red-400 text-lg">Error: {error}</p>
             </div>
         );
 
     return (
         <motion.div
-            className="page projects-page"
+            className="page"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}>
-            <div className="projects-container">
+            <div className="w-full max-w-6xl mx-auto px-6">
                 <motion.h1
                     ref={titleRef}
-                    className="projects-title"
+                    className="text-4xl font-bold text-center mb-8"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}>
                     My GitHub Projects
                 </motion.h1>
-                <ul className="projects-grid">
+                <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 list-none p-0">
                     {repos.map((repo, index) => (
                         <ProjectCard key={repo.id} repo={repo} index={index} />
                     ))}

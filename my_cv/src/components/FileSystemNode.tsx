@@ -51,13 +51,15 @@ const FileSystemNode: React.FC<FileSystemNodeProps> = ({
     };
 
     return (
-        <div className="file-system-node">
+        <div className="w-full">
             <div
-                className={`file-system-item ${item.type}`}
-                style={{ paddingLeft: `${depth * 20}px` }}
+                className={`flex items-center py-1 px-2 cursor-pointer hover:bg-gray-700 rounded transition-colors duration-150 ${
+                    item.type === "folder" ? "font-medium" : ""
+                } ${item.type === "link" ? "text-blue-400" : ""}`}
+                style={{ paddingLeft: `${depth * 20 + 8}px` }}
                 onClick={handleClick}>
-                <span className="file-icon">{getIcon(item)}</span>
-                <span className="file-name">{item.name}</span>
+                <span className="mr-2 text-sm">{getIcon(item)}</span>
+                <span className="text-sm text-gray-300">{item.name}</span>
             </div>
 
             {item.type === "folder" && isOpen && item.children && (

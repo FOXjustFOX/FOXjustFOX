@@ -4,21 +4,29 @@ import { Link, Outlet } from "react-router-dom";
 const Layout: React.FC = () => {
     return (
         <div className="container">
-            <nav>
-                <Link className="link" to="/">
-                    <p>Home</p>
-                </Link>
-                <Link className="link" to="/projects">
-                    <p>Projects</p>
-                </Link>
-                <Link className="link" to="/files">
-                    <p>Files</p>
-                </Link>
-                <a className="link" href="https://winietki.lis.rocks">
-                    <p>Generator winietek</p>
-                </a>
+            <nav className="fixed top-0 left-0 w-full bg-dark/90 backdrop-blur-sm z-50 border-b border-gray-700">
+                <div className="max-w-7xl mx-auto flex justify-center space-x-8 py-4 px-6">
+                    <Link className="nav-link" to="/">
+                        Home
+                    </Link>
+                    <Link className="nav-link" to="/projects">
+                        Projects
+                    </Link>
+                    <Link className="nav-link" to="/files">
+                        Files
+                    </Link>
+                    <a
+                        className="nav-link"
+                        href="https://winietki.lis.rocks"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Generator winietek
+                    </a>
+                </div>
             </nav>
-            <Outlet /> {/* This is where child routes will be rendered */}
+            <main className="pt-20 min-h-screen">
+                <Outlet />
+            </main>
         </div>
     );
 };

@@ -8,8 +8,6 @@ import RepoDetails from "./RepoDetails";
 import FileExplorer from "./FileExplorer"; // Import the FileExplorer component
 import { NotFound } from "./components";
 
-import "./styles.css";
-
 const App: React.FC = () => {
     const location = useLocation(); // Get current route location
 
