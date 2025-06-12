@@ -1,76 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
-import { motion, useInView } from "framer-motion";
-
-// Loading component with animation
-const LoadingAnimation = () => {
-    return (
-        <motion.div
-            className="loading-container"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}>
-            <motion.div
-                className="loading-circle"
-                animate={{
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 360],
-                    borderRadius: ["20%", "50%", "20%"],
-                }}
-                transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
-            />
-            <motion.p
-                animate={{
-                    opacity: [0.5, 1, 0.5],
-                }}
-                transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}>
-                Loading repositories...
-            </motion.p>
-        </motion.div>
-    );
-};
-
-interface Repo {
-    id: number;
-    name: string;
-    html_url: string;
-    description: string | null;
-    stargazers_count: number;
-    forks_count: number;
-    language: string | null;
-}
-
-const ProjectCard = ({ repo, index }: { repo: Repo; index: number }) => {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, amount: 0.1 });
-
-    return (
-        <motion.li
-            ref={ref}
-            key={repo.id}
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{
-                duration: 0.2,
-                delay: 0.02 * index, // Sequential delay based on index
-                // ease: "easeOut",
-            }}
-            whileHover={{ scale: 1.05, transition: { duration: 0.1 } }}>
-            <Link to={`/projects/${repo.name}`} className="project-link">
-                <h3 className="repo-name">{repo.name}</h3>
-                <p>{repo.description || "No description available"}</p>
-            </Link>
-        </motion.li>
-    );
-};
+import { motion } from "framer-motion";
+import { LoadingAnimation, ProjectCard } from "./components";
+import { Repo } from "./types";
 
 const Projects: React.FC = () => {
     const [repos, setRepos] = useState<Repo[]>([]);

@@ -1,107 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
-// Define the structure of our file/folder items
-interface FileSystemItem {
-    name: string;
-    type: "file" | "folder" | "link";
-    path: string; // Required for files and folders
-    url?: string;
-    children?: FileSystemItem[];
-}
+import { FileSystemNode } from "./components";
+import { FileSystemItem, GitHubContentItem } from "./types";
 
 interface FileExplorerProps {
     onFileSelect: (file: FileSystemItem) => void;
 }
-
-interface GitHubContentItem {
-    name: string;
-    type: "dir" | "file";
-    path: string; // Required by GitHub API
-    html_url: string;
-}
-
-interface FileSystemNodeProps {
-    item: FileSystemItem;
-    depth: number;
-    onFileClick: (item: FileSystemItem) => void;
-}
-
-// Component for a file/folder item in the explorer
-const FileSystemNode: React.FC<FileSystemNodeProps> = ({
-    item,
-    depth,
-    onFileClick,
-}) => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const handleClick = () => {
-        if (item.type === "folder") {
-            setIsOpen(!isOpen);
-        } else {
-            onFileClick(item);
-        }
-    };
-
-    // Determine appropriate icon based on type and file extension
-    const getIcon = (item: FileSystemItem) => {
-        if (item.type === "folder") {
-            return isOpen ? "📂" : "📁";
-        } else if (item.type === "link") {
-            return "🔗";
-        } else {
-            // File type icons based on extension
-            const extension = item.name.split(".").pop()?.toLowerCase();
-            const iconMap: Record<string, string> = {
-                py: "🐍",
-                js: "📝",
-                jsx: "⚛️",
-                ts: "📘",
-                tsx: "📘",
-                html: "🌐",
-                css: "🎨",
-                json: "📊",
-                md: "📑",
-                pdf: "📕",
-            };
-
-            return iconMap[extension || ""] || "📄";
-        }
-    };
-
-    return (
-        <div className="file-system-node">
-            <div
-                className={`file-system-item ${item.type}`}
-                style={{ paddingLeft: `${depth * 20}px` }}
-                onClick={handleClick}>
-                <span className="file-icon">{getIcon(item)}</span>
-                <span className="file-name">{item.name}</span>
-            </div>
-
-            {item.type === "folder" && isOpen && item.children && (
-                <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}>
-                    {item.children.map(
-                        (child: FileSystemItem, index: number) => (
-                            <FileSystemNode
-                                key={index}
-                                item={child}
-                                depth={depth + 1}
-                                onFileClick={onFileClick}
-                            />
-                        )
-                    )}
-                </motion.div>
-            )}
-        </div>
-    );
-};
 
 // Function to process GitHub API items into FileSystemItems
 const processItems = (items: GitHubContentItem[]): FileSystemItem[] => {

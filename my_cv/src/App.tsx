@@ -6,15 +6,9 @@ import Home from "./Home";
 import Projects from "./Projects";
 import RepoDetails from "./RepoDetails";
 import FileExplorer from "./FileExplorer"; // Import the FileExplorer component
+import { NotFound } from "./components";
 
 import "./styles.css";
-
-const NotFound: React.FC = () => (
-    <div className="page">
-        <h1>404 - Page Not Found</h1>
-        <p>Oops! The page you are looking for does not exist.</p>
-    </div>
-);
 
 const App: React.FC = () => {
     const location = useLocation(); // Get current route location
