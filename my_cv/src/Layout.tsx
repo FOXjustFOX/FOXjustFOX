@@ -9,11 +9,15 @@ const Layout: React.FC = () => {
                     <Link className="nav-link" to="/">
                         Home
                     </Link>
+                    
                     <Link className="nav-link" to="/projects">
                         Projects
                     </Link>
                     <Link className="nav-link" to="/files">
                         Files
+                    </Link>
+                    <Link className="nav-link" to="/about">
+                        About Me
                     </Link>
                     <a
                         className="nav-link"

@@ -6,6 +6,7 @@ import Home from "./Home";
 import Projects from "./Projects";
 import RepoDetails from "./RepoDetails";
 import FileExplorer from "./FileExplorer"; // Import the FileExplorer component
+import AboutMe from "./AboutMe"; // Import the AboutMe component
 import { NotFound } from "./components";
 
 const App: React.FC = () => {
@@ -32,6 +33,7 @@ const App: React.FC = () => {
                                 />
                             }
                         />
+                        <Route path="/about" element={<AboutMe />} />
                         <Route path="*" element={<NotFound />} />
                     </Route>
                 </Routes>

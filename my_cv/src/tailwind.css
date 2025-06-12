@@ -4,93 +4,92 @@
 
 /* Custom base styles */
 @layer base {
-    html,
-    body {
-        @apply min-h-screen m-0 bg-dark text-white;
-        font-synthesis: none;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-        line-height: 1.5;
-        font-weight: 400;
-    }
+  html, body {
+    @apply min-h-screen m-0 bg-dark text-white;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+  }
 
-    #root {
-        @apply w-full min-h-screen flex flex-col;
-    }
+  #root {
+    @apply w-full min-h-screen flex flex-col;
+  }
 
-    a {
-        @apply font-medium text-primary no-underline transition-colors duration-200;
-    }
+  a {
+    @apply font-medium text-primary no-underline transition-colors duration-200;
+  }
 
-    a:hover {
-        @apply text-primary-hover;
-    }
+  a:hover {
+    @apply text-primary-hover;
+  }
 
-    h1 {
-        @apply text-4xl leading-tight font-bold;
-    }
+  h1 {
+    @apply text-4xl leading-tight font-bold;
+  }
 
-    h2 {
-        @apply text-2xl font-bold mb-4;
-    }
+  h2 {
+    @apply text-2xl font-bold mb-4;
+  }
 
-    h3 {
-        @apply text-lg font-semibold mb-3;
-    }
+  h3 {
+    @apply text-lg font-semibold mb-3;
+  }
 
-    button {
-        @apply rounded-lg border border-transparent px-5 py-3 text-base font-medium 
+  button {
+    @apply rounded-lg border border-transparent px-5 py-3 text-base font-medium 
            bg-dark-secondary cursor-pointer transition-all duration-200;
-    }
+  }
 
-    button:hover {
-        @apply border-primary;
-        transform: translateY(-2px);
-    }
+  button:hover {
+    @apply border-primary;
+    transform: translateY(-2px);
+  }
 
-    button:focus,
-    button:focus-visible {
-        outline: 4px auto -webkit-focus-ring-color;
-    }
+  button:focus,
+  button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
 }
 
 /* Custom component styles */
 @layer components {
-    .container {
-        @apply w-full min-h-screen flex flex-col items-center;
-    }
+  .container {
+    @apply w-full min-h-screen flex flex-col items-center;
+  }
 
-    .page {
-        @apply w-full min-h-screen flex flex-col items-center pt-20 pb-8;
-    }
+  .page {
+    @apply w-full min-h-screen flex flex-col items-center pt-20 pb-8;
+  }
 
-    .nav-link {
-        @apply text-white/80 hover:text-primary transition-colors duration-200 font-medium;
-    }
+  .nav-link {
+    @apply text-white/80 hover:text-primary transition-colors duration-200 font-medium;
+  }
 
-    .card {
-        @apply bg-gray-800 rounded-lg p-6 border border-gray-700 shadow-lg;
-    }
+  .card {
+    @apply bg-gray-800 rounded-lg p-6 border border-gray-700 shadow-lg;
+  }
 
-    .btn-primary {
-        @apply bg-primary text-white px-4 py-2 rounded-lg font-medium 
+  .btn-primary {
+    @apply bg-primary text-white px-4 py-2 rounded-lg font-medium 
            hover:bg-primary-hover transition-all duration-200;
-    }
+  }
 
-    .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(100, 108, 255, 0.3);
-    }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(100, 108, 255, 0.3);
+  }
 
-    .btn-secondary {
-        @apply bg-gray-700 text-white px-4 py-2 rounded-lg font-medium 
+  .btn-secondary {
+    @apply bg-gray-700 text-white px-4 py-2 rounded-lg font-medium 
            hover:bg-gray-600 transition-all duration-200;
-    }
+  }
 
-    .btn-secondary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
+  .btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
 }
