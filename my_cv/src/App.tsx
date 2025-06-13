@@ -2,7 +2,14 @@ import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { Layout } from "./components";
-import { Home, About, Projects, RepoDetails, FileExplorer, NotFound } from "./pages";
+import {
+    Home,
+    About,
+    Projects,
+    RepoDetails,
+    FileExplorer,
+    NotFound,
+} from "./pages";
 
 import "./styles/styles.css";
 
