@@ -8,6 +8,9 @@ const Layout: React.FC = () => {
                 <Link className="link" to="/">
                     <p>Home</p>
                 </Link>
+                <Link className="link" to="/about">
+                    <p>About</p>
+                </Link>
                 <Link className="link" to="/projects">
                     <p>Projects</p>
                 </Link>
