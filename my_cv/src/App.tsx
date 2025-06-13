@@ -1,20 +1,10 @@
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion"; // Import AnimatePresence
-import Layout from "./Layout";
-import Home from "./Home";
-import Projects from "./Projects";
-import RepoDetails from "./RepoDetails";
-import FileExplorer from "./FileExplorer"; // Import the FileExplorer component
+import { AnimatePresence } from "framer-motion";
+import { Layout } from "./components";
+import { Home, Projects, RepoDetails, FileExplorer, NotFound } from "./pages";
 
-import "./styles.css";
-
-const NotFound: React.FC = () => (
-    <div className="page">
-        <h1>404 - Page Not Found</h1>
-        <p>Oops! The page you are looking for does not exist.</p>
-    </div>
-);
+import "./styles/styles.css";
 
 const App: React.FC = () => {
     const location = useLocation(); // Get current route location

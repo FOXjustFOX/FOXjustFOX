@@ -17,7 +17,7 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
-    overflow-y: auto; /* Allow vertical scrolling at root level */
+    overflow-y: auto;
     overflow-x: hidden;
 }
 
@@ -32,8 +32,8 @@ body {
     font-weight: 400;
     color: rgba(0, 0, 0, 0.87);
     background-color: var(--color-secondary);
-    overflow-y: auto; /* Allow vertical scrolling */
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 a {
@@ -48,13 +48,15 @@ a:hover {
 .container {
     width: 100%;
     min-height: 100vh;
-    height: auto; /* Allow container to grow */
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 0;
-    overflow-y: auto; /* Allow vertical scrolling */
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    padding-top: 30px; /* Match nav height */
 }
 
 nav {
@@ -63,6 +65,7 @@ nav {
     justify-content: flex-start;
     align-items: center;
     width: 100%;
+    height: 60px; /* Set explicit height */
     text-align: left;
     padding: 0 15px;
     position: fixed;
@@ -70,7 +73,8 @@ nav {
     left: 0;
     background: var(--color-secondary);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 100; /* Ensure navbar is on top */
+    z-index: 1000; /* Increase z-index to ensure it's always on top */
+    box-sizing: border-box;
 }
 
 .link {
@@ -85,11 +89,12 @@ nav {
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    padding-top: 70px;
-    min-height: 0;
+    padding-top: 0;
+    min-height: calc(100vh - 60px);
     height: auto;
-    flex-direction: column; /* Default is column for all pages */
-    overflow: visible; /* Allow content to flow naturally and enable sticky behavior */
+    flex-direction: column;
+    overflow: visible;
+    box-sizing: border-box;
 }
 
 /* RepoDetails specific layouts */
@@ -305,7 +310,6 @@ nav {
 .projects-page {
     align-items: center;
     justify-content: flex-start;
-    padding-top: 70px;
     padding-bottom: 30px; /* Add bottom padding */
     overflow-y: auto; /* Allow vertical scroll to see all projects */
     overflow-x: hidden;
@@ -423,13 +427,14 @@ nav {
 /* Home page specific layouts - similar to RepoDetails */
 .home-page {
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
-    padding-top: 70px;
     padding-bottom: 30px;
+    position: relative;
+    box-sizing: border-box;
 }
 
 .home-container {
@@ -621,15 +626,17 @@ nav {
     }
 
     .page {
-        padding-top: 60px;
+        padding-top: 80px; /* Match desktop padding */
         width: 100%;
         max-width: 100%;
         overflow-x: hidden;
-        overflow-y: hidden;
+        overflow-y: auto; /* Allow scrolling on mobile */
+        min-height: calc(100vh - 80px);
     }
 
     nav {
-        /* padding: 10px 15px; */
+        height: 60px; /* Consistent height on mobile */
+        padding: 0 10px; /* Slightly less padding on mobile */
         width: 100%;
         box-sizing: border-box;
     }
@@ -784,9 +791,9 @@ nav {
         width: 100%;
         max-width: 100%;
         overflow-x: hidden;
-        padding-top: 60px;
+        padding-top: 20px;
         height: auto;
-        min-height: 100vh;
+        min-height: calc(100vh - 60px);
         padding-bottom: 20px;
     }
 
