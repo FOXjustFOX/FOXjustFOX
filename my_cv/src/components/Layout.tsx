@@ -8,14 +8,15 @@ const Layout: React.FC = () => {
                 <Link className="link" to="/">
                     <p>Home</p>
                 </Link>
-                <Link className="link" to="/about">
-                    <p>About</p>
-                </Link>
+                
                 <Link className="link" to="/projects">
                     <p>Projects</p>
                 </Link>
                 <Link className="link" to="/files">
                     <p>Files</p>
+                </Link>
+                <Link className="link" to="/about">
+                    <p>About Me!</p>
                 </Link>
                 <a className="link" href="https://winietki.lis.rocks">
                     <p>Generator winietek</p>
