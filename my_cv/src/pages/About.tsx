@@ -3,6 +3,9 @@ import { motion, useInView } from "framer-motion";
 import profilePhoto from "../assets/profile-photo.jpg";
 
 const About: React.FC = () => {
+    // Detect if device supports touch
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
     // References for scroll animations
     const introRef = useRef(null);
     const journeyRef = useRef(null);
@@ -55,7 +58,7 @@ const About: React.FC = () => {
                                         href="https://github.com/FOXjustFOX"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        whileHover={{ scale: 1.05 }}
+                                        {...(isTouchDevice ? {} : { whileHover: { scale: 1.05 } })}
                                         className="social-link">
                                         GitHub
                                     </motion.a>
@@ -63,7 +66,7 @@ const About: React.FC = () => {
                                         href="https://www.linkedin.com/in/igor-lis-4b3923254/"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        whileHover={{ scale: 1.05 }}
+                                        {...(isTouchDevice ? {} : { whileHover: { scale: 1.05 } })}
                                         className="social-link">
                                         LinkedIn
                                     </motion.a>
@@ -71,7 +74,7 @@ const About: React.FC = () => {
                                         href="https://igor.lis.rocks/about"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        whileHover={{ scale: 1.05 }}
+                                        {...(isTouchDevice ? {} : { whileHover: { scale: 1.05 } })}
                                         className="social-link">
                                         Portfolio
                                     </motion.a>
@@ -219,7 +222,7 @@ const About: React.FC = () => {
                         <div className="projects-grid">
                             <motion.div 
                                 className="project-card"
-                                whileHover={{ scale: 1.02, y: -5 }}
+                                {...(isTouchDevice ? {} : { whileHover: { scale: 1.02, y: -5 } })}
                                 transition={{ duration: 0.3 }}>
                                 <div className="project-header">
                                     <motion.a
@@ -227,7 +230,7 @@ const About: React.FC = () => {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="project-title-link"
-                                        whileHover={{ scale: 1.05 }}
+                                        {...(isTouchDevice ? {} : { whileHover: { scale: 1.05 } })}
                                         transition={{ duration: 0.2 }}>
                                         <h4>PWR Now - for students by students</h4>
                                     </motion.a>
@@ -246,7 +249,7 @@ const About: React.FC = () => {
 
                             <motion.div 
                                 className="project-card"
-                                whileHover={{ scale: 1.02, y: -5 }}
+                                {...(isTouchDevice ? {} : { whileHover: { scale: 1.02, y: -5 } })}
                                 transition={{ duration: 0.3 }}>
                                 <div className="project-header">
                                     <motion.a
@@ -254,7 +257,7 @@ const About: React.FC = () => {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="project-title-link"
-                                        whileHover={{ scale: 1.05 }}
+                                        {...(isTouchDevice ? {} : { whileHover: { scale: 1.05 } })}
                                         transition={{ duration: 0.2 }}>
                                         <h4>Personal Portfolio</h4>
                                     </motion.a>
@@ -273,7 +276,7 @@ const About: React.FC = () => {
 
                             <motion.div 
                                 className="project-card"
-                                whileHover={{ scale: 1.02, y: -5 }}
+                                {...(isTouchDevice ? {} : { whileHover: { scale: 1.02, y: -5 } })}
                                 transition={{ duration: 0.3 }}>
                                 <div className="project-header">
                                     <h4>Private Server & Auto-Deploy System</h4>
@@ -294,7 +297,7 @@ const About: React.FC = () => {
 
                             <motion.div 
                                 className="project-card"
-                                whileHover={{ scale: 1.02, y: -5 }}
+                                {...(isTouchDevice ? {} : { whileHover: { scale: 1.02, y: -5 } })}
                                 transition={{ duration: 0.3 }}>
                                 <div className="project-header">
                                     <h4>Event Automation Tools</h4>
