@@ -58,7 +58,7 @@
           "id": "iy1d883eesk4boasfzrjj051",
           "visible": true,
           "institution": "Wroclaw University of Science and Technology (WUST)",
-          "studyType": "Univercity",
+          "studyType": "University",
           "area": "Systems engineering",
           "score": "",
           "date": "september 2024 - present",
@@ -281,7 +281,7 @@
           "id": "pidngc7ieedzdmtviw80e517",
           "visible": true,
           "name": "next.js",
-          "description": "The whole packge",
+          "description": "The whole package",
           "level": 4,
           "keywords": [
             "React",
