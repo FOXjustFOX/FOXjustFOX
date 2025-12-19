@@ -9,6 +9,7 @@ import {
     RepoDetails,
     FileExplorer,
     NotFound,
+    CV,
 } from "./pages";
 
 import "./styles/styles.css";
@@ -23,6 +24,7 @@ const App: React.FC = () => {
                     <Route element={<Layout />}>
                         <Route path="/" element={<Home />} />
                         <Route path="/about" element={<About />} />
+                        <Route path="/cv" element={<CV />} />
                         <Route path="/projects" element={<Projects />} />
                         <Route
                             path="/projects/:repoName"

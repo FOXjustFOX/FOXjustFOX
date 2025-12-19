@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import SnakeGame from "../components/SnakeGame";
 import "../styles/fox.css";
 
 const Home: React.FC = () => {
@@ -201,8 +202,31 @@ const Home: React.FC = () => {
                     </svg>
                 </div>
 
-                
+                <div className="welcome-text">
+                    <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}>
+                        Welcome to Igor's Portfolio
+                    </motion.h1>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.5 }}>
+                        Junior Software Developer | Systems Engineering Student
+                    </motion.p>
+                </div>
             </div>
+
+            {/* Snake Game Section */}
+            <motion.div
+                className="game-section"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}>
+                <h2 className="game-title">Take a Break - Play Snake! 🐍</h2>
+                <SnakeGame />
+            </motion.div>
         </motion.div>
     );
 };
