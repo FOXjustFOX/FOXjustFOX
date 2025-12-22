@@ -1,0 +1,407 @@
+{
+  "basics": {
+    "name": "Igor Lis",
+    "headline": "Junior Software Developer",
+    "email": "igor@lis.rocks",
+    "phone": "+48690535212",
+    "location": "Wroclaw",
+    "url": {
+      "label": "",
+      "href": "https://igor.lis.rocks"
+    },
+    "customFields": [],
+    "picture": {
+      "url": "https://avatars.githubusercontent.com/u/87518349?v=4",
+      "size": 64,
+      "aspectRatio": 1,
+      "borderRadius": 0,
+      "effects": {
+        "hidden": false,
+        "border": false,
+        "grayscale": false
+      }
+    }
+  },
+  "sections": {
+    "summary": {
+      "name": "Summary",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "summary",
+      "content": "<p>A passionate, self-taught programmer, coding since the age of 13. Proficient in frontend and backend software development, with hands-on experience in server management, Docker, and creating impactful software. A fast learner and strong team player with a creative approach to problem-solving, dedicated to creating applications that help others.</p>"
+    },
+    "awards": {
+      "name": "Awards",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "awards",
+      "items": []
+    },
+    "certifications": {
+      "name": "Certifications",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "certifications",
+      "items": []
+    },
+    "education": {
+      "name": "Education",
+      "columns": 2,
+      "separateLinks": true,
+      "visible": true,
+      "id": "education",
+      "items": [
+        {
+          "id": "iy1d883eesk4boasfzrjj051",
+          "visible": true,
+          "institution": "Wroclaw University of Science and Technology (WUST)",
+          "studyType": "University",
+          "area": "Systems engineering",
+          "score": "",
+          "date": "september 2024 - present",
+          "summary": "",
+          "url": {
+            "label": "WUST system engineer",
+            "href": "https://wit.pwr.edu.pl/kandydaci/studia-i-stopnia/inzynieria-systemow"
+          }
+        },
+        {
+          "id": "uf9zf6yt5nc6mh78kzxvn18m",
+          "visible": true,
+          "institution": "III Liceum Ogólnokształcące im. Stefana Batorego in Chorzów",
+          "studyType": "High school",
+          "area": "Math and IT",
+          "score": "",
+          "date": "2020 - 2024",
+          "summary": "",
+          "url": {
+            "label": "",
+            "href": "https://3lo.edu.pl"
+          }
+        }
+      ]
+    },
+    "experience": {
+      "name": "Experience",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "experience",
+      "items": [
+        {
+          "id": "nxq0j5m5gx20s6sbgd87bt1m",
+          "visible": true,
+          "company": "Faculty council of the student government",
+          "position": "Member",
+          "location": "",
+          "date": "March 2025 - April 2025",
+          "summary": "<p>Coordinating the IT section of an IT conference co-hosted by several universities.<br>Coordinated a 5-person section to establish partnerships for an event with over 220 participants.<br>Created multiple applications for the council, used by over 100 people.</p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        }
+      ]
+    },
+    "volunteer": {
+      "name": "Volunteering",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "volunteer",
+      "items": []
+    },
+    "interests": {
+      "name": "Interests",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "interests",
+      "items": []
+    },
+    "languages": {
+      "name": "Languages",
+      "columns": 3,
+      "separateLinks": true,
+      "visible": true,
+      "id": "languages",
+      "items": [
+        {
+          "id": "u5ca85xewhobwi4wfmvznftc",
+          "visible": true,
+          "name": "English",
+          "description": "",
+          "level": 5
+        },
+        {
+          "id": "xfr3m8b2vunv584sw3udlqor",
+          "visible": true,
+          "name": "Polish",
+          "description": "",
+          "level": 5
+        },
+        {
+          "id": "ilh3c1fg47pmsxkjw8h005mt",
+          "visible": true,
+          "name": "Italian",
+          "description": "",
+          "level": 1
+        }
+      ]
+    },
+    "profiles": {
+      "name": "Profiles",
+      "columns": 4,
+      "separateLinks": true,
+      "visible": true,
+      "id": "profiles",
+      "items": [
+        {
+          "id": "m9hh5u4rvm1rm4kq7x7ea5ve",
+          "visible": true,
+          "network": "Github",
+          "username": "FOXjustFOX",
+          "icon": "github",
+          "url": {
+            "label": "",
+            "href": "https://github.com/FOXjustFOX"
+          }
+        },
+        {
+          "id": "q74efmjoggz4upmym1lk9p4y",
+          "visible": true,
+          "network": "LinkedIn",
+          "username": "Igor Lis",
+          "icon": "linkedin",
+          "url": {
+            "label": "",
+            "href": "https://www.linkedin.com/in/igor-lis-4b3923254/"
+          }
+        }
+      ]
+    },
+    "projects": {
+      "name": "Projects",
+      "columns": 4,
+      "separateLinks": true,
+      "visible": true,
+      "id": "projects",
+      "items": [
+        {
+          "id": "pzyf8de4mgm1osb1iy8wt3vq",
+          "visible": true,
+          "name": "PWR Now - for students by students",
+          "description": "",
+          "date": "",
+          "summary": "<p>Creation and development of an application aggregating events at Wroclaw University of Technology, which gained ~300 active users.</p>",
+          "keywords": [
+            "TypeScript",
+            "Django"
+          ],
+          "url": {
+            "label": "",
+            "href": "https://pwrnow.pl"
+          }
+        },
+        {
+          "id": "jq2g6bwho7noeoz2o97vmodm",
+          "visible": true,
+          "name": "Personal portfolio",
+          "description": "",
+          "date": "",
+          "summary": "<p>Designed and implemented a personal portfolio using Next.js and TypeScript, hosted on a private server using Docker.</p>",
+          "keywords": [
+            "React",
+            "TypeScript"
+          ],
+          "url": {
+            "label": "",
+            "href": "https://igor.lis.rocks"
+          }
+        },
+        {
+          "id": "dbgdwz9urfp16meih9cp2ng7",
+          "visible": true,
+          "name": "Private server and automatic deployment system",
+          "description": "",
+          "date": "",
+          "summary": "<p>Built and maintained a self-hosted server (Docker) for most projects and APIs, along with a script for automatic deployment from GitHub.</p><p></p>",
+          "keywords": [
+            "Git",
+            "Docker",
+            "Coolify"
+          ],
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "xnv4dz0r1g907z3u177s83we",
+          "visible": true,
+          "name": "Event automation tools for the council",
+          "description": "",
+          "date": "",
+          "summary": "<p>Developed a QR code generation tool for a group of 120 students.</p><p>Developed an application to automate the filling out of nametags for major events.</p>",
+          "keywords": [],
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        }
+      ]
+    },
+    "publications": {
+      "name": "Publications",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "publications",
+      "items": []
+    },
+    "references": {
+      "name": "References",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "references",
+      "items": []
+    },
+    "skills": {
+      "name": "Skills",
+      "columns": 3,
+      "separateLinks": true,
+      "visible": true,
+      "id": "skills",
+      "items": [
+        {
+          "id": "pidngc7ieedzdmtviw80e517",
+          "visible": true,
+          "name": "next.js",
+          "description": "The whole package",
+          "level": 4,
+          "keywords": [
+            "React",
+            "TypeScript",
+            "Responsive UI"
+          ]
+        },
+        {
+          "id": "f9b9d52wq71u494y459j2ug8",
+          "visible": true,
+          "name": "Backend",
+          "description": "Experience in big-data and developing backend for multiple applications",
+          "level": 4,
+          "keywords": [
+            "Big data",
+            "TypeScript",
+            "ai",
+            "API",
+            "Django"
+          ]
+        },
+        {
+          "id": "qdpxvmqire0q3vxappnxdjgl",
+          "visible": true,
+          "name": "DevOps",
+          "description": "I have my own server, with multiple apps and apis deployed",
+          "level": 4,
+          "keywords": [
+            "git",
+            "Docker",
+            "API",
+            "Linux",
+            "AWS",
+            "Google cloud"
+          ]
+        }
+      ]
+    },
+    "custom": {
+      "aglynoplme9q1r5o0e34kv5p": {
+        "name": "",
+        "columns": 1,
+        "separateLinks": true,
+        "visible": true,
+        "id": "aglynoplme9q1r5o0e34kv5p",
+        "items": [
+          {
+            "id": "zd7cwhmj302z1of99dos01ek",
+            "visible": true,
+            "name": "",
+            "description": "",
+            "date": "",
+            "location": "",
+            "summary": "<p>Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO)).</p><p></p><p>I hereby consent to the processing of my personal data for the purpose of the recruitment process, in accordance with the General Data Protection Regulation (GDPR)</p>",
+            "keywords": [],
+            "url": {
+              "label": "",
+              "href": ""
+            }
+          }
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "template": "rhyhorn",
+    "layout": [
+      [
+        [
+          "profiles",
+          "summary",
+          "experience",
+          "education",
+          "projects",
+          "volunteer",
+          "references"
+        ],
+        [
+          "skills",
+          "interests",
+          "certifications",
+          "awards",
+          "publications",
+          "languages",
+          "custom.aglynoplme9q1r5o0e34kv5p"
+        ]
+      ]
+    ],
+    "css": {
+      "value": "* {\n\toutline: 1px solid #000;\n\toutline-offset: 4px;\n}",
+      "visible": false
+    },
+    "page": {
+      "margin": 18,
+      "format": "a4",
+      "options": {
+        "breakLine": true,
+        "pageNumbers": true
+      }
+    },
+    "theme": {
+      "background": "#ffffff",
+      "text": "#000000",
+      "primary": "#dc2626"
+    },
+    "typography": {
+      "font": {
+        "family": "IBM Plex Serif",
+        "subset": "latin",
+        "variants": [
+          "regular",
+          "italic",
+          "600"
+        ],
+        "size": 14
+      },
+      "lineHeight": 1.5,
+      "hideIcons": false,
+      "underlineLinks": true
+    },
+    "notes": ""
+  }
+}
