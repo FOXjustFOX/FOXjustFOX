@@ -1,232 +1,205 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import SnakeGame from "../components/SnakeGame";
+import cvData from "../data/cv-data.json";
 import "../styles/fox.css";
 
 const Home: React.FC = () => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const foxRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const updateMousePosition = (event: MouseEvent) => {
-            setMousePosition({
-                x: event.clientX,
-                y: event.clientY,
-            });
-        };
-
-        window.addEventListener("mousemove", updateMousePosition);
-
-        return () => {
-            window.removeEventListener("mousemove", updateMousePosition);
-        };
-    }, []);
-
-    // Calculate eye position based on mouse position
-    const calculateEyePosition = () => {
-        if (!foxRef.current) return { x: 0, y: 0 };
-
-        const foxRect = foxRef.current.getBoundingClientRect();
-        const foxCenterX = foxRect.left + foxRect.width / 2;
-        const foxCenterY = foxRect.top + foxRect.height / 2;
-
-        const deltaX = mousePosition.x - foxCenterX;
-        const deltaY = mousePosition.y - foxCenterY;
-        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-        const maxOffset = 4; // Increased offset for more eye movement
-
-        const offsetX =
-            Math.min(
-                Math.max((deltaX / distance) * maxOffset, -maxOffset),
-                maxOffset
-            ) || 0;
-        const offsetY =
-            Math.min(
-                Math.max((deltaY / distance) * maxOffset, -maxOffset),
-                maxOffset
-            ) || 0;
-
-        return { x: offsetX, y: offsetY };
-    };
-
-    const eyeOffset = calculateEyePosition();
+    const { basics, sections } = cvData;
 
     return (
         <motion.div
-            className="fox-container"
+            className="home-container"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}>
-            <div className="fox-wrapper">
-                <div ref={foxRef} className="fox-head">
-                    <svg
-                        width="200"
-                        height="200"
-                        viewBox="0 0 200 200"
-                        className="fox-svg">
-                        {/* Fox head shape */}
-                        <ellipse
-                            cx="100"
-                            cy="120"
-                            rx="45"
-                            ry="40"
-                            fill="#FF7B2D"
+            {/* Hero Section */}
+            <section className="hero-section">
+                <motion.div
+                    className="hero-content"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}>
+                    <motion.div
+                        className="hero-image-container"
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}>
+                        <img
+                            src={basics.picture.url}
+                            alt={basics.name}
+                            className="hero-profile-image"
                         />
-
-                        {/* Fox ears */}
-                        <ellipse
-                            cx="75"
-                            cy="85"
-                            rx="15"
-                            ry="25"
-                            fill="#FF7B2D"
-                            transform="rotate(-30 75 85)"
-                        />
-                        <ellipse
-                            cx="125"
-                            cy="85"
-                            rx="15"
-                            ry="25"
-                            fill="#FF7B2D"
-                            transform="rotate(30 125 85)"
-                        />
-
-                        {/* Inner ears */}
-                        <ellipse
-                            cx="75"
-                            cy="85"
-                            rx="8"
-                            ry="15"
-                            fill="#FFB366"
-                            transform="rotate(-30 75 85)"
-                        />
-                        <ellipse
-                            cx="125"
-                            cy="85"
-                            rx="8"
-                            ry="15"
-                            fill="#FFB366"
-                            transform="rotate(30 125 85)"
-                        />
-
-                        {/* Fox snout - centered */}
-                        <ellipse
-                            cx="100"
-                            cy="135"
-                            rx="30"
-                            ry="20"
-                            fill="#FFB366"
-                        />
-
-                        {/* Eyes */}
-                        <circle cx="85" cy="110" r="8" fill="white" />
-                        <circle cx="115" cy="110" r="8" fill="white" />
-
-                        {/* Eye pupils that follow mouse */}
-                        <motion.circle
-                            cx={85 + eyeOffset.x}
-                            cy={110 + eyeOffset.y}
-                            r="4"
-                            fill="black"
+                        <motion.div
+                            className="hero-image-glow"
                             animate={{
-                                cx: 85 + eyeOffset.x,
-                                cy: 110 + eyeOffset.y,
+                                scale: [1, 1.1, 1],
+                                opacity: [0.5, 0.8, 0.5],
                             }}
                             transition={{
-                                type: "spring",
-                                stiffness: 300,
-                                damping: 30,
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "easeInOut",
                             }}
                         />
-                        <motion.circle
-                            cx={115 + eyeOffset.x}
-                            cy={110 + eyeOffset.y}
-                            r="4"
-                            fill="black"
-                            animate={{
-                                cx: 115 + eyeOffset.x,
-                                cy: 110 + eyeOffset.y,
-                            }}
-                            transition={{
-                                type: "spring",
-                                stiffness: 300,
-                                damping: 30,
-                            }}
-                        />
+                    </motion.div>
 
-                        {/* Nose - centered */}
-                        <ellipse cx="100" cy="130" rx="3" ry="2" fill="black" />
-
-                        {/* Mouth */}
-                        <path
-                            d="M 90 145 Q 100 150 110 145"
-                            stroke="black"
-                            strokeWidth="2"
-                            fill="none"
-                        />
-
-                        {/* Whiskers */}
-                        <line
-                            x1="60"
-                            y1="125"
-                            x2="75"
-                            y2="120"
-                            stroke="black"
-                            strokeWidth="1"
-                        />
-                        <line
-                            x1="60"
-                            y1="135"
-                            x2="75"
-                            y2="135"
-                            stroke="black"
-                            strokeWidth="1"
-                        />
-                        <line
-                            x1="125"
-                            y1="120"
-                            x2="140"
-                            y2="125"
-                            stroke="black"
-                            strokeWidth="1"
-                        />
-                        <line
-                            x1="125"
-                            y1="135"
-                            x2="140"
-                            y2="135"
-                            stroke="black"
-                            strokeWidth="1"
-                        />
-                    </svg>
-                </div>
-
-                <div className="welcome-text">
                     <motion.h1
+                        className="hero-title"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.3 }}>
-                        Welcome to Igor's Portfolio
+                        transition={{ duration: 0.8, delay: 0.4 }}>
+                        Hi, I'm{" "}
+                        <motion.span
+                            className="hero-name"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.6 }}>
+                            {basics.name}
+                        </motion.span>
                     </motion.h1>
-                    <motion.p
+
+                    <motion.h2
+                        className="hero-subtitle"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.5 }}>
-                        Junior Software Developer | Systems Engineering Student
-                    </motion.p>
-                </div>
-            </div>
+                        transition={{ duration: 0.8, delay: 0.8 }}>
+                        {basics.headline}
+                    </motion.h2>
+
+                    <motion.p
+                        className="hero-description"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 1 }}
+                        dangerouslySetInnerHTML={{
+                            __html: sections.summary.content,
+                        }}
+                    />
+
+                    <motion.div
+                        className="hero-cta"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 1.2 }}>
+                        <Link to="/about" className="cta-button primary">
+                            Learn More About Me
+                        </Link>
+                        <Link to="/projects" className="cta-button secondary">
+                            View My Projects
+                        </Link>
+                    </motion.div>
+
+                    <motion.div
+                        className="hero-social"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 1.4 }}>
+                        {sections.profiles.items.map((profile, index) => (
+                            <motion.a
+                                key={profile.id}
+                                href={profile.url.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="social-icon"
+                                initial={{ opacity: 0, scale: 0 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.5, delay: 1.4 + index * 0.1 }}
+                                whileHover={{ scale: 1.2, rotate: 5 }}
+                                whileTap={{ scale: 0.9 }}>
+                                {profile.network}
+                            </motion.a>
+                        ))}
+                    </motion.div>
+                </motion.div>
+
+                {/* Animated Background Elements */}
+                <motion.div
+                    className="hero-bg-circle circle-1"
+                    animate={{
+                        scale: [1, 1.2, 1],
+                        rotate: [0, 180, 360],
+                    }}
+                    transition={{
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "linear",
+                    }}
+                />
+                <motion.div
+                    className="hero-bg-circle circle-2"
+                    animate={{
+                        scale: [1, 1.3, 1],
+                        rotate: [360, 180, 0],
+                    }}
+                    transition={{
+                        duration: 25,
+                        repeat: Infinity,
+                        ease: "linear",
+                    }}
+                />
+                <motion.div
+                    className="hero-bg-circle circle-3"
+                    animate={{
+                        scale: [1, 1.1, 1],
+                        rotate: [0, -180, -360],
+                    }}
+                    transition={{
+                        duration: 30,
+                        repeat: Infinity,
+                        ease: "linear",
+                    }}
+                />
+            </section>
 
             {/* Snake Game Section */}
-            <motion.div
-                className="game-section"
-                initial={{ opacity: 0, y: 30 }}
+            <motion.section
+                className="game-section-modern"
+                initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}>
-                <h2 className="game-title">Take a Break - Play Snake! 🐍</h2>
-                <SnakeGame />
-            </motion.div>
+                transition={{ duration: 0.8, delay: 1.6 }}>
+                <motion.div
+                    className="game-header"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 1.8 }}>
+                    <h2 className="game-title-modern">
+                        <motion.span
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6, delay: 2 }}>
+                            Take a Break
+                        </motion.span>
+                        <motion.span
+                            className="game-emoji"
+                            animate={{
+                                rotate: [0, 10, -10, 0],
+                            }}
+                            transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                            }}>
+                            🎮
+                        </motion.span>
+                    </h2>
+                    <motion.p
+                        className="game-subtitle"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 2.2 }}>
+                        Challenge yourself with a classic Snake game!
+                    </motion.p>
+                </motion.div>
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 2.4 }}>
+                    <SnakeGame />
+                </motion.div>
+            </motion.section>
         </motion.div>
     );
 };
