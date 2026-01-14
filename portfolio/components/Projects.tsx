@@ -1,12 +1,12 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { gsap, ScrollTrigger } from '../lib/gsap';
 import { CONTENT } from '../lib/constants';
 import { GlowText } from './ui/GlowText';
 import { Card } from './ui/Card';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 export const Projects = () => {
   const containerRef = useRef<HTMLDivElement>(null);

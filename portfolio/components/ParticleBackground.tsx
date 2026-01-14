@@ -2,6 +2,45 @@
 
 import { useEffect, useRef } from 'react';
 
+// Particle class definition (outside component to avoid React Hooks warning)
+class Particle {
+  x: number;
+  y: number;
+  size: number;
+  speedX: number;
+  speedY: number;
+  opacity: number;
+  canvas: HTMLCanvasElement | null;
+
+  constructor(canvas: HTMLCanvasElement) {
+    this.canvas = canvas;
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2 + 0.5;
+    this.speedX = Math.random() * 0.5 - 0.25;
+    this.speedY = Math.random() * 0.5 - 0.25;
+    this.opacity = Math.random() * 0.5 + 0.2;
+  }
+
+  update() {
+    if (!this.canvas) return;
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    if (this.x > this.canvas.width) this.x = 0;
+    if (this.x < 0) this.x = this.canvas.width;
+    if (this.y > this.canvas.height) this.y = 0;
+    if (this.y < 0) this.y = this.canvas.height;
+  }
+
+  draw(ctx: CanvasRenderingContext2D) {
+    ctx.fillStyle = `rgba(124, 58, 237, ${this.opacity})`;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
 export const ParticleBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -20,49 +59,12 @@ export const ParticleBackground = () => {
     updateCanvasSize();
     window.addEventListener('resize', updateCanvasSize);
 
-    // Particle class
-    class Particle {
-      x: number;
-      y: number;
-      size: number;
-      speedX: number;
-      speedY: number;
-      opacity: number;
-
-      constructor() {
-        this.x = Math.random() * canvas!.width;
-        this.y = Math.random() * canvas!.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = Math.random() * 0.5 - 0.25;
-        this.speedY = Math.random() * 0.5 - 0.25;
-        this.opacity = Math.random() * 0.5 + 0.2;
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.x > canvas!.width) this.x = 0;
-        if (this.x < 0) this.x = canvas!.width;
-        if (this.y > canvas!.height) this.y = 0;
-        if (this.y < 0) this.y = canvas!.height;
-      }
-
-      draw() {
-        if (!ctx) return;
-        ctx.fillStyle = `rgba(124, 58, 237, ${this.opacity})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
     // Create particles
     const particles: Particle[] = [];
     const particleCount = 80;
 
     for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
+      particles.push(new Particle(canvas));
     }
 
     // Animation loop
@@ -71,7 +73,7 @@ export const ParticleBackground = () => {
 
       particles.forEach((particle) => {
         particle.update();
-        particle.draw();
+        particle.draw(ctx);
       });
 
       // Draw connections
