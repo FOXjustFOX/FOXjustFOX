@@ -53,7 +53,7 @@ export const CONTENT = {
       ],
       links: [
         { label: 'Website', url: 'https://pwrnow.pl' },
-        { label: 'App Store', url: '#' },
+        { label: 'App Store', url: '#' }, // TODO: Add actual App Store URL
       ],
       tags: ['Kubernetes', 'Gemini AI', 'React Native', 'GitOps'],
     },
@@ -109,12 +109,12 @@ export const CONTENT = {
   contact: {
     title: 'Get In Touch',
     description: 'Internships: DevOps, full-stack, AI. Wrocław/remote.',
-    email: 'contact@example.com',
+    email: 'contact@example.com', // TODO: Update with actual email
     links: [
       { label: 'GitHub', url: 'https://github.com/FOXjustFOX' },
-      { label: 'LinkedIn', url: '#' },
+      { label: 'LinkedIn', url: '#' }, // TODO: Add actual LinkedIn URL
       { label: 'PWr Now', url: 'https://pwrnow.pl' },
-      { label: 'TikTok', url: '#' },
+      { label: 'TikTok', url: '#' }, // TODO: Add actual TikTok URL
     ],
     cvUrl: '/cv.pdf',
   },
