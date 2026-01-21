@@ -1,10 +1,10 @@
 FROM nginx:alpine
 
-# Copy static assets into var/www
+# Copy nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Copy static assets
 COPY . /usr/share/nginx/html
 
-# Expose port 80
 EXPOSE 80
-
-# Start nginx
 CMD ["nginx", "-g", "daemon off;"]
