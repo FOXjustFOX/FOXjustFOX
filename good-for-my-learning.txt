@@ -1,2 +1,0 @@
-# for developing django server with github actions
-https://www.codingforentrepreneurs.com/blog/django-github-actions/

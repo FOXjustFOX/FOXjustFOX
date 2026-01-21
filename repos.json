@@ -1,0 +1,131 @@
+[
+  {
+    "title": "PWr Now",
+    "description": "AI integrated, university wide app for sharing information about events. For students by students",
+    "url": "https://pwrnow.pl"
+  },
+  {
+    "title": "Me as an AI model",
+    "description": "Retrained an AI model on my online presence to mess with my friends",
+    "url": null
+  },
+  {
+    "title": "Whisperer",
+    "description": "Local script for audio-to-text conversion with speaker awearness",
+    "url": null
+  },
+  {
+    "title": "Local File Converter",
+    "description": "A quick file converter app made for and with AI",
+    "url": "https://github.com/FOXjustFOX/file_converter"
+  },
+  {
+    "title": "PyBroker",
+    "description": "Algorithmic Trading script in Python with Machine Learning",
+    "url": "https://github.com/FOXjustFOX/pybroker"
+  },
+  {
+    "title": "QR Code Generator WRSS",
+    "description": null,
+    "url": "https://foxjustfox.github.io/qrcode_gen_web/"
+  },
+  {
+    "title": "Winietki WRSS",
+    "description": null,
+    "url": "https://github.com/FOXjustFOX/winietki_wrss"
+  },
+  {
+    "title": "Github WRSS",
+    "description": null,
+    "url": "https://github.com/orgs/Samorzad-WIT/repositories"
+  },
+  {
+    "title": "FOXjustFOX",
+    "description": null,
+    "url": "https://github.com/FOXjustFOX/FOXjustFOX"
+  },
+  {
+    "title": "optymalizacja_systemow",
+    "description": null,
+    "url": "https://github.com/FOXjustFOX/optymalizacja_systemow"
+  },
+  {
+    "title": "wstep_do_algorytmow",
+    "description": null,
+    "url": "https://github.com/FOXjustFOX/wstep_do_algorytmow"
+  },
+  {
+    "title": "modele_system-w",
+    "description": null,
+    "url": "https://github.com/FOXjustFOX/modele_system-w"
+  },
+  {
+    "title": "statystyka",
+    "description": null,
+    "url": "https://github.com/FOXjustFOX/statystyka"
+  },
+  {
+    "title": "Dont-Get-Expelled",
+    "description": "Game written in Python",
+    "url": "https://github.com/FOXjustFOX/Dont-Get-Expelled"
+  },
+  {
+    "title": "Womans' Day Project",
+    "description": null,
+    "url": "https://github.com/FOXjustFOX/girl_project"
+  },
+  {
+    "title": "public-apis",
+    "description": "A collective list of free APIs",
+    "url": "https://github.com/FOXjustFOX/public-apis"
+  },
+  {
+    "title": "backend-cocktail-api",
+    "description": "Inspired by thecocktaildb API for coctails. Used in recrutation tasks",
+    "url": "https://github.com/FOXjustFOX/backend-cocktail-api",
+    "visible": false
+  },
+  {
+    "title": "bazaDanychBetter",
+    "description": null,
+    "url": "https://github.com/FOXjustFOX/bazaDanychBetter"
+  },
+  {
+    "title": "WUST Council Logos",
+    "description": null,
+    "url": "https://github.com/FOXjustFOX/wit_logo"
+  },
+  {
+    "title": "School-Python",
+    "description": null,
+    "url": "https://github.com/FOXjustFOX/School-Python"
+  },
+  {
+    "title": "learning_log",
+    "description": null,
+    "url": "https://github.com/FOXjustFOX/learning_log",
+    "visible": false
+  },
+  {
+    "title": "Files for people",
+    "description": null,
+    "url": "https://github.com/FOXjustFOX/for-people"
+  },
+  {
+    "title": "codespaces-test",
+    "description": null,
+    "url": "https://github.com/FOXjustFOX/codespaces-test"
+  },
+  {
+    "title": "qrcode_gen_web",
+    "description": null,
+    "url": "https://github.com/FOXjustFOX/qrcode_gen_web",
+    "visible": false
+  },
+  {
+    "title": "demo_dependabot",
+    "description": "🤖 Fork me to try out Dependabot ",
+    "url": "https://github.com/FOXjustFOX/demo_dependabot",
+    "visible": false
+  }
+]

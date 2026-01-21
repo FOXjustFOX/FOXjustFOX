@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+    </style>
+</head>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Google Sans', sans-serif;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 100vh;
+        padding: 2rem;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        font-size: 6rem;
+        margin: 0;
+        font-weight: 700;
+        color: #000;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin: 0.5rem 0 2rem 0;
+        font-weight: 400;
+        color: #333;
+    }
+
+    .message {
+        font-size: 2rem;
+        color: #666;
+        margin-bottom: 2rem;
+        max-width: 400px;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        font-family: 'Google Sans', sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: #000;
+        background: #fff;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border 0.2s ease-out;
+    }
+
+    .btn:hover {
+        transform: translate(-4px, -4px);
+        border: 2px solid #000;
+        box-shadow: 6px 6px 0px #000;
+    }
+
+    .btn svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .home-link {
+        margin-top: 2rem;
+        color: #000;
+        text-decoration: none;
+        font-size: 0.9rem;
+        border-bottom: 1px solid transparent;
+        transition: border-bottom 0.2s ease-out;
+    }
+
+    .home-link:hover {
+        border-bottom: 1px solid #000;
+    }
+
+    /* Fox Animation Styles */
+    .fox-runner {
+        position: fixed;
+        height: 80px;
+        z-index: 9999;
+        pointer-events: auto;
+        cursor: pointer;
+    }
+
+    .fox-runner img {
+        height: 100%;
+        width: auto;
+        pointer-events: none;
+    }
+
+    /* Bottom: left to right */
+    .fox-runner.bottom {
+        bottom: -10px;
+        left: -150px;
+        animation: runBottomLR var(--run-duration, 6s) linear forwards;
+    }
+
+    .fox-runner.bottom.reverse {
+        animation: runBottomRL var(--run-duration, 6s) linear forwards;
+        transform: scaleX(-1);
+    }
+
+    @keyframes runBottomLR {
+        0% {
+            left: -150px;
+        }
+
+        100% {
+            left: calc(100vw + 150px);
+        }
+    }
+
+    @keyframes runBottomRL {
+        0% {
+            left: calc(100vw + 150px);
+        }
+
+        100% {
+            left: -150px;
+        }
+    }
+
+    /* Top: left to right */
+    .fox-runner.top {
+        top: -10px;
+        left: -150px;
+        animation: runTopLR var(--run-duration, 6s) linear forwards;
+        transform: scaleY(-1);
+    }
+
+    .fox-runner.top.reverse {
+        animation: runTopRL var(--run-duration, 6s) linear forwards;
+        transform: scale(-1, -1);
+    }
+
+    @keyframes runTopLR {
+        0% {
+            left: -150px;
+        }
+
+        100% {
+            left: calc(100vw + 150px);
+        }
+    }
+
+    @keyframes runTopRL {
+        0% {
+            left: calc(100vw + 150px);
+        }
+
+        100% {
+            left: -150px;
+        }
+    }
+
+    /* Left: top to bottom */
+    .fox-runner.left {
+        left: -50px;
+        top: -150px;
+        animation: runLeftTB var(--run-duration, 6s) linear forwards;
+        transform: rotate(90deg);
+        transform-origin: center center;
+    }
+
+    .fox-runner.left.reverse {
+        animation: runLeftBT var(--run-duration, 6s) linear forwards;
+        transform: rotate(90deg) scaleX(-1);
+        transform-origin: center center;
+    }
+
+    @keyframes runLeftTB {
+        0% {
+            top: -150px;
+        }
+
+        100% {
+            top: calc(100vh + 150px);
+        }
+    }
+
+    @keyframes runLeftBT {
+        0% {
+            top: calc(100vh + 150px);
+        }
+
+        100% {
+            top: -150px;
+        }
+    }
+
+    /* Right: top to bottom */
+    .fox-runner.right {
+        right: -50px;
+        top: -150px;
+        animation: runRightTB var(--run-duration, 6s) linear forwards;
+        transform: rotate(-90deg) scaleX(-1);
+        transform-origin: center center;
+    }
+
+    .fox-runner.right.reverse {
+        animation: runRightBT var(--run-duration, 6s) linear forwards;
+        transform: rotate(-90deg);
+        transform-origin: center center;
+    }
+
+    @keyframes runRightTB {
+        0% {
+            top: -150px;
+        }
+
+        100% {
+            top: calc(100vh + 150px);
+        }
+    }
+
+    @keyframes runRightBT {
+        0% {
+            top: calc(100vh + 150px);
+        }
+
+        100% {
+            top: -150px;
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <h2 class="message">
+            </h2class> If you have questions about this exact entry, don't hesitate to contact me!
+        </h2>
+        <div class="buttons">
+            <a href="mailto:iglis.com20@gmail.com" class="btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                Email
+            </a>
+            <a href="https://m.me/IgorIgorLis" class="btn" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.13.26.35.27.57l.05 1.78c.04.57.61.94 1.13.71l1.98-.87c.17-.08.36-.1.55-.06.91.25 1.87.38 2.88.38 5.64 0 10-4.13 10-9.7C22 6.13 17.64 2 12 2zm6 7.46l-2.93 4.67c-.47.73-1.47.92-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.17-.68-.61l2.93-4.67c.47-.73 1.47-.92 2.17-.4l2.34 1.75a.6.6 0 0 0 .72 0l3.16-2.4c.42-.32.97.17.68.61z" />
+                </svg>
+                Messenger
+            </a>
+        </div>
+        <a href="/" class="home-link">← Back to Home</a>
+    </div>
+
+    <script>
+        // Fox Runner Animation
+        function spawnFox() {
+            const fox = document.createElement('div');
+            fox.className = 'fox-runner';
+
+            // Randomly pick a side: top, bottom, left, right
+            const sides = ['top', 'bottom', 'left', 'right'];
+            const side = sides[Math.floor(Math.random() * sides.length)];
+            fox.classList.add(side);
+
+            // Randomize direction (forward or reverse)
+            if (Math.random() > 0.5) {
+                fox.classList.add('reverse');
+            }
+
+            // Duration
+            const baseDuration = 6;
+            let currentDuration = baseDuration;
+            let removeTimeout;
+
+            fox.style.setProperty('--run-duration', `${currentDuration}s`);
+
+            // Use the fox.gif image
+            const img = document.createElement('img');
+            img.src = 'fox.gif';
+            img.alt = 'Running fox';
+            fox.appendChild(img);
+
+            // Click handler for speed boost using Web Animations API
+            fox.addEventListener('click', (e) => {
+                e.stopPropagation();
+
+                const animations = fox.getAnimations();
+                if (animations.length > 0) {
+                    const anim = animations[0];
+                    anim.playbackRate = 3;
+
+                    setTimeout(() => {
+                        if (animations.length > 0 && anim.playState === 'running') {
+                            anim.playbackRate = 2;
+                        }
+                    }, 500);
+
+                    clearTimeout(removeTimeout);
+                    const newRemainingTime = (anim.effect.getTiming().duration - anim.currentTime) / anim.playbackRate;
+                    removeTimeout = setTimeout(() => {
+                        fox.remove();
+                    }, newRemainingTime + 100);
+                }
+            });
+
+            document.body.appendChild(fox);
+
+            // Remove fox after animation completes
+            removeTimeout = setTimeout(() => {
+                fox.remove();
+            }, currentDuration * 1000 + 100);
+        }
+
+        function scheduleNextFox() {
+            const delay = 10000;
+            setTimeout(() => {
+                spawnFox();
+                scheduleNextFox();
+            }, delay);
+        }
+
+        // Start the sporadic fox appearances after a short delay
+        setTimeout(() => {
+            spawnFox();
+            scheduleNextFox();
+        }, 2000);
+    </script>
+</body>
+
+</html>

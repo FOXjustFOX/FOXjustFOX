@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repositories</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+    </style>
+</head>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Google Sans', sans-serif;
+    }
+
+    .container {
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
+        padding-top: 45vh;
+        padding-bottom: 45vh;
+        box-sizing: border-box;
+    }
+
+    a {
+        color: #000;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    li {
+        margin-bottom: 1rem;
+        padding: 0.5rem 0.5rem;
+        position: relative;
+        transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border 0.2s ease-out;
+        border: 2px solid transparent;
+        background: #fff;
+    }
+
+    li:hover {
+        transform: translate(-4px, -4px);
+        border: 2px solid #000;
+        box-shadow: 6px 6px 0px #000;
+    }
+
+    h3 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    p {
+        margin: 0.5rem 0 0 0;
+        font-size: 1rem;
+        font-weight: 400;
+        color: #333;
+    }
+
+    /* Fox Button */
+    .fox-button {
+        cursor: pointer;
+        font-size: 2rem;
+        opacity: 0.6;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .fox-button:hover {
+        opacity: 1;
+        transform: translate(-4px, -4px) scale(1.1);
+    }
+
+    /* Fox Animation Styles */
+    .fox-runner {
+        position: fixed;
+        height: 80px;
+        z-index: 9999;
+        pointer-events: auto;
+        cursor: pointer;
+    }
+
+    .fox-runner img {
+        height: 100%;
+        width: auto;
+        pointer-events: none;
+    }
+
+    /* Bottom: left to right */
+    .fox-runner.bottom {
+        bottom: -10px;
+        left: -150px;
+        animation: runBottomLR var(--run-duration, 6s) linear forwards;
+    }
+
+    .fox-runner.bottom.reverse {
+        animation: runBottomRL var(--run-duration, 6s) linear forwards;
+        transform: scaleX(-1);
+    }
+
+    @keyframes runBottomLR {
+        0% {
+            left: -150px;
+        }
+
+        100% {
+            left: calc(100vw + 150px);
+        }
+    }
+
+    @keyframes runBottomRL {
+        0% {
+            left: calc(100vw + 150px);
+        }
+
+        100% {
+            left: -150px;
+        }
+    }
+
+    /* Top: left to right */
+    .fox-runner.top {
+        top: -10px;
+        left: -150px;
+        animation: runTopLR var(--run-duration, 6s) linear forwards;
+        transform: scaleY(-1);
+    }
+
+    .fox-runner.top.reverse {
+        animation: runTopRL var(--run-duration, 6s) linear forwards;
+        transform: scale(-1, -1);
+    }
+
+    @keyframes runTopLR {
+        0% {
+            left: -150px;
+        }
+
+        100% {
+            left: calc(100vw + 150px);
+        }
+    }
+
+    @keyframes runTopRL {
+        0% {
+            left: calc(100vw + 150px);
+        }
+
+        100% {
+            left: -150px;
+        }
+    }
+
+    /* Left: top to bottom */
+    .fox-runner.left {
+        left: -50px;
+        top: -150px;
+        animation: runLeftTB var(--run-duration, 6s) linear forwards;
+        transform: rotate(90deg);
+        transform-origin: center center;
+    }
+
+    .fox-runner.left.reverse {
+        animation: runLeftBT var(--run-duration, 6s) linear forwards;
+        transform: rotate(90deg) scaleX(-1);
+        transform-origin: center center;
+    }
+
+    @keyframes runLeftTB {
+        0% {
+            top: -150px;
+        }
+
+        100% {
+            top: calc(100vh + 150px);
+        }
+    }
+
+    @keyframes runLeftBT {
+        0% {
+            top: calc(100vh + 150px);
+        }
+
+        100% {
+            top: -150px;
+        }
+    }
+
+    /* Right: top to bottom */
+    .fox-runner.right {
+        right: -50px;
+        top: -150px;
+        animation: runRightTB var(--run-duration, 6s) linear forwards;
+        transform: rotate(-90deg) scaleX(-1);
+        transform-origin: center center;
+    }
+
+    .fox-runner.right.reverse {
+        animation: runRightBT var(--run-duration, 6s) linear forwards;
+        transform: rotate(-90deg);
+        transform-origin: center center;
+    }
+
+    @keyframes runRightTB {
+        0% {
+            top: -150px;
+        }
+
+        100% {
+            top: calc(100vh + 150px);
+        }
+    }
+
+    @keyframes runRightBT {
+        0% {
+            top: calc(100vh + 150px);
+        }
+
+        100% {
+            top: -150px;
+        }
+    }
+
+    /* ====== CANNON STYLES ====== */
+    .cannon-container {
+        position: fixed;
+        bottom: -30px;
+        right: -80px;
+        z-index: 10000;
+        cursor: pointer;
+        transition: bottom 0.3s ease, right 0.3s ease, transform 0.2s ease;
+    }
+
+    .cannon-container.peek {
+        bottom: -5px;
+        right: 10px;
+    }
+
+    .cannon-container:hover,
+    .cannon-container.visible {
+        bottom: 15px;
+        right: 20px;
+    }
+
+    .cannon-container:hover {
+        transform: scale(1.1);
+    }
+
+    .cannon-container.active {
+        filter: drop-shadow(0 0 10px #ff6b00) drop-shadow(0 0 20px #ff4500);
+    }
+
+    /* Invisible corner trigger zone */
+    .corner-trigger {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 150px;
+        height: 150px;
+        z-index: 9999;
+        pointer-events: auto;
+    }
+
+    .barrel {
+        width: 100px;
+        height: 25px;
+        background: linear-gradient(to bottom, #666, #333);
+        border-radius: 5px 15px 15px 5px;
+        border: 2px solid #111;
+        transform: rotate(0deg);
+        transition: transform 0.5s ease;
+    }
+
+
+    .cannon-container.active .barrel {
+        transform: rotate(45deg);
+        animation: barrelReady 1s ease-in-out 0.5s infinite alternate;
+    }
+
+    @keyframes barrelReady {
+        0% {
+            transform: rotate(45deg);
+        }
+
+        100% {
+            transform: rotate(50deg);
+        }
+    }
+
+    /* Cannonball projectile */
+    .cannonball {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: radial-gradient(circle at 30% 30%, #555, #111);
+        border-radius: 50%;
+        z-index: 9999;
+        pointer-events: none;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .cannonball::after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 5px;
+        width: 6px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+    }
+
+    /* Explosion effect */
+    .explosion {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9998;
+    }
+
+    .explosion-particle {
+        position: absolute;
+        border-radius: 50%;
+        animation: explode 0.6s ease-out forwards;
+    }
+
+    @keyframes explode {
+        0% {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+        }
+
+        100% {
+            transform: translate(var(--tx), var(--ty)) scale(0);
+            opacity: 0;
+        }
+    }
+
+    /* Smoke ring */
+    .smoke-ring {
+        position: fixed;
+        border: 4px solid rgba(100, 100, 100, 0.6);
+        border-radius: 50%;
+        animation: smokeExpand 0.5s ease-out forwards;
+        pointer-events: none;
+        z-index: 9997;
+    }
+
+    @keyframes smokeExpand {
+        0% {
+            width: 20px;
+            height: 20px;
+            opacity: 1;
+        }
+
+        100% {
+            width: 150px;
+            height: 150px;
+            opacity: 0;
+        }
+    }
+
+    /* Entry destruction animation */
+    .destroying {
+        animation: destroyEntry 0.5s ease-out forwards;
+    }
+
+    @keyframes destroyEntry {
+        0% {
+            transform: scale(1) rotate(0deg);
+            opacity: 1;
+        }
+
+        50% {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        100% {
+            transform: scale(0) rotate(20deg);
+            opacity: 0;
+        }
+    }
+
+    /* Crosshair cursor when cannon is active */
+    body.cannon-mode {
+        cursor: crosshair;
+    }
+
+    body.cannon-mode li {
+        cursor: crosshair;
+    }
+
+    body.cannon-mode a {
+        cursor: crosshair;
+    }
+
+    body.cannon-mode li:hover {
+        border-color: #ff4500 !important;
+        box-shadow: 6px 6px 0px #ff4500, 0 0 20px rgba(255, 69, 0, 0.5) !important;
+    }
+
+    /* Muzzle flash */
+    .muzzle-flash {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        background: radial-gradient(circle, #fff 0%, #ff0 30%, #f80 60%, transparent 70%);
+        border-radius: 50%;
+        animation: flash 0.15s ease-out forwards;
+        pointer-events: none;
+        z-index: 10001;
+    }
+
+    @keyframes flash {
+        0% {
+            transform: scale(0.5);
+            opacity: 1;
+        }
+
+        100% {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <div id="app">
+            <div>Loading data from repos.json...</div>
+        </div>
+    </div>
+
+    <script>
+        var fox_enabled = false;
+        var fox_clicked_once = true;
+        async function init() {
+            const app = document.getElementById('app');
+
+            try {
+                // Fetch the JSON file
+                const response = await fetch('repos.json');
+
+                if (!response.ok) {
+                    throw new Error(`Failed to load repos.json (${response.status})`);
+                }
+
+                const repos = await response.json();
+
+                if (!Array.isArray(repos) || repos.length === 0) {
+                    app.innerHTML = '<div>No repositories found in repos.json</div>';
+                    return;
+                }
+
+                // Render the list
+                const ul = document.createElement('ul');
+
+                repos.forEach(repo => {
+                    // Check for visible flag (default to true if not specified)
+                    if (repo.visible === false) return;
+
+                    const li = document.createElement('li');
+
+                    const a = document.createElement('a');
+                    a.href = repo.url;
+
+                    // Title
+                    const title = document.createElement('h3');
+                    title.textContent = repo.title;
+                    a.appendChild(title);
+
+                    // Description
+                    if (repo.description) {
+                        const desc = document.createElement('p');
+                        desc.textContent = repo.description;
+                        a.appendChild(desc);
+                    }
+
+                    li.appendChild(a);
+
+                    ul.appendChild(li);
+                });
+
+                app.innerHTML = '';
+                app.appendChild(ul);
+
+
+                // Add fox button as the last element
+                const foxLi = document.createElement('li');
+                foxLi.className = 'fox-button';
+                foxLi.innerHTML = `<span>🦊</span>`;
+                foxLi.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (fox_clicked_once) {
+                        spawnFox();
+                    }
+                    fox_clicked_once = false;
+                    fox_enabled = !fox_enabled;
+                    // console.log(fox_enabled);
+                });
+                ul.appendChild(foxLi);
+
+            } catch (err) {
+                console.error(err);
+                app.innerHTML = `
+                    <div style="color: red;">
+                        <p>Error loading repositories.</p>
+                        <small>${err.message}</small>
+                    </div>
+                `;
+            }
+        }
+
+        init();
+
+        // Fox Runner Animation
+        function spawnFox() {
+            const fox = document.createElement('div');
+            fox.className = 'fox-runner';
+
+            // Randomly pick a side: top, bottom, left, right
+            const sides = ['top', 'bottom', 'left', 'right'];
+            const side = sides[Math.floor(Math.random() * sides.length)];
+            fox.classList.add(side);
+
+            // Randomize direction (forward or reverse)
+            if (Math.random() > 0.5) {
+                fox.classList.add('reverse');
+            }
+
+            // Duration (keeping your setting of 6s)
+            const baseDuration = 6;
+            let currentDuration = baseDuration;
+            let startTime = Date.now();
+            let removeTimeout;
+
+            fox.style.setProperty('--run-duration', `${currentDuration}s`);
+
+            // Use the fox.gif image
+            const img = document.createElement('img');
+            img.src = 'fox.gif';
+            img.alt = 'Running fox';
+            fox.appendChild(img);
+
+            // Click handler for speed boost using Web Animations API
+            fox.addEventListener('click', (e) => {
+                e.stopPropagation();
+
+                // Get the running animation
+                const animations = fox.getAnimations();
+                if (animations.length > 0) {
+                    const anim = animations[0];
+
+                    // Boost speed to 3x for 0.5 seconds, then stay at 2x
+                    anim.playbackRate = 3;
+
+                    // Calculate remaining time at boosted speed
+                    const remainingTime = (anim.effect.getTiming().duration - anim.currentTime) / anim.playbackRate;
+
+                    // After 0.5s, reduce to 2x speed (still faster than normal)
+                    setTimeout(() => {
+                        if (animations.length > 0 && anim.playState === 'running') {
+                            anim.playbackRate = 2;
+                        }
+                    }, 500);
+
+                    // Update the removal timeout
+                    clearTimeout(removeTimeout);
+                    const newRemainingTime = (anim.effect.getTiming().duration - anim.currentTime) / anim.playbackRate;
+                    removeTimeout = setTimeout(() => {
+                        fox.remove();
+                    }, newRemainingTime + 100);
+                }
+            });
+
+            document.body.appendChild(fox);
+
+            // Remove fox after animation completes
+            removeTimeout = setTimeout(() => {
+                fox.remove();
+            }, currentDuration * 1000 + 100);
+        }
+
+        function scheduleNextFox() {
+            // Random interval between 5-15 seconds
+            const delay = 10000;
+            setTimeout(() => {
+                // Don't spawn fox when barrel mode is active
+                if (!cannonActive && fox_enabled) {
+                    spawnFox();
+                }
+                scheduleNextFox();
+            }, delay);
+        }
+
+        // Start the sporadic fox appearances after a short delay
+        // setTimeout(() => {
+        //     spawnFox(); // First fox appears soon
+        // }, 2000);
+        scheduleNextFox();
+        
+        // ====== CANNON SYSTEM ======
+        let cannonActive = false;
+
+        // Create cannon element
+        function createCannon() {
+            const cannonContainer = document.createElement('div');
+            cannonContainer.className = 'cannon-container';
+            cannonContainer.id = 'cannon';
+            cannonContainer.innerHTML = `<div class="barrel"></div>`;
+
+            cannonContainer.addEventListener('click', toggleCannon);
+            document.body.appendChild(cannonContainer);
+
+            // Create invisible corner trigger zone
+            const cornerTrigger = document.createElement('div');
+            cornerTrigger.className = 'corner-trigger';
+            cornerTrigger.id = 'corner-trigger';
+
+            cornerTrigger.addEventListener('mouseenter', () => {
+                if (!cannonActive) {
+                    cannonContainer.classList.add('peek');
+                }
+            });
+
+            cornerTrigger.addEventListener('mouseleave', () => {
+                if (!cannonActive) {
+                    cannonContainer.classList.remove('peek');
+                }
+            });
+
+            document.body.appendChild(cornerTrigger);
+        }
+
+        function toggleCannon(e) {
+            e.stopPropagation();
+            cannonActive = !cannonActive;
+            const cannon = document.getElementById('cannon');
+
+            if (cannonActive) {
+                cannon.classList.remove('peek');
+                cannon.classList.add('active', 'visible');
+                document.body.classList.add('cannon-mode');
+            } else {
+                cannon.classList.remove('active', 'visible');
+                document.body.classList.remove('cannon-mode');
+            }
+        }
+
+        // Fire cannonball
+        function fireCannonball(targetX, targetY, targetElement) {
+            const cannon = document.getElementById('cannon');
+            const cannonRect = cannon.getBoundingClientRect();
+
+            // Start position (from cannon muzzle)
+            const startX = cannonRect.left + 20;
+            const startY = cannonRect.top - 10;
+
+            // Create muzzle flash
+            const flash = document.createElement('div');
+            flash.className = 'muzzle-flash';
+            flash.style.left = (startX - 20) + 'px';
+            flash.style.top = (startY - 20) + 'px';
+            document.body.appendChild(flash);
+            setTimeout(() => flash.remove(), 150);
+
+            // Create cannonball
+            const ball = document.createElement('div');
+            ball.className = 'cannonball';
+            ball.style.left = startX + 'px';
+            ball.style.top = startY + 'px';
+            document.body.appendChild(ball);
+
+            // Calculate flight duration based on distance
+            const dx = targetX - startX;
+            const dy = targetY - startY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            const duration = Math.min(500, Math.max(200, distance / 2));
+
+            // Animate cannonball with arc
+            const startTime = Date.now();
+            const animate = () => {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Parabolic arc
+                const arcHeight = -100 * Math.sin(progress * Math.PI);
+                const currentX = startX + dx * progress;
+                const currentY = startY + dy * progress + arcHeight;
+
+                ball.style.left = currentX + 'px';
+                ball.style.top = currentY + 'px';
+
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    ball.remove();
+                    createExplosion(targetX, targetY);
+                    destroyEntry(targetElement);
+                }
+            };
+
+            requestAnimationFrame(animate);
+        }
+
+        // Create explosion effect
+        function createExplosion(x, y) {
+            // Create explosion container
+            const explosion = document.createElement('div');
+            explosion.className = 'explosion';
+            explosion.style.left = x + 'px';
+            explosion.style.top = y + 'px';
+
+            // Create particles
+            const colors = ['#ff4500', '#ff6b00', '#ffa500', '#ffcc00', '#ff0000', '#333'];
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'explosion-particle';
+
+                const angle = (Math.random() * 360) * (Math.PI / 180);
+                const distance = 50 + Math.random() * 100;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+                particle.style.width = (5 + Math.random() * 15) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.left = '0px';
+                particle.style.top = '0px';
+
+                explosion.appendChild(particle);
+            }
+
+            document.body.appendChild(explosion);
+            setTimeout(() => explosion.remove(), 600);
+
+            // Create smoke ring
+            const smoke = document.createElement('div');
+            smoke.className = 'smoke-ring';
+            smoke.style.left = (x - 10) + 'px';
+            smoke.style.top = (y - 10) + 'px';
+            document.body.appendChild(smoke);
+            setTimeout(() => smoke.remove(), 500);
+        }
+
+        // Destroy entry
+        function destroyEntry(element) {
+            if (!element || element.classList.contains('destroying')) return;
+
+            element.classList.add('destroying');
+
+            setTimeout(() => {
+                element.remove();
+            }, 500);
+        }
+
+        // Handle clicks on entries when cannon is active
+        document.addEventListener('click', (e) => {
+            if (!cannonActive) return;
+
+            // Find if we clicked on an entry (li element)
+            let target = e.target;
+            while (target && target !== document.body) {
+                if (target.tagName === 'LI' && target.closest('#app')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const rect = target.getBoundingClientRect();
+                    const targetX = rect.left + rect.width / 2;
+                    const targetY = rect.top + rect.height / 2;
+
+                    fireCannonball(targetX, targetY, target);
+                    return;
+                }
+                target = target.parentElement;
+            }
+        }, true);
+
+        // Initialize cannon
+        createCannon();
+    </script>
+</body>
+
+</html>
