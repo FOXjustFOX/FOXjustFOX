@@ -1,0 +1,566 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --card-bg: transparent;
+    --card-hover-bg: #ffffff;
+    --card-hover-border: #000000;
+    --card-hover-shadow: #000000;
+    --desc-color: #333333;
+    --link-color: #000000;
+    --fox-opacity: 0.6;
+    --btn-bg: #ffffff;
+    --btn-text: #000000;
+    --btn-border-hover: #000000;
+    --btn-shadow-hover: #000000;
+    --message-color: #666666;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #121212;
+        --text-color: #e0e0e0;
+        --card-bg: transparent;
+        --card-hover-bg: #1e1e1e;
+        --card-hover-border: #ffffff;
+        --card-hover-shadow: #ffffff;
+        --desc-color: #aaaaaa;
+        --link-color: #e0e0e0;
+        --fox-opacity: 0.8;
+        --btn-bg: #1e1e1e;
+        --btn-text: #e0e0e0;
+        --btn-border-hover: #ffffff;
+        --btn-shadow-hover: #ffffff;
+        --message-color: #aaaaaa;
+    }
+}
+
+body {
+    margin: 0;
+    font-family: 'Google Sans', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    padding-top: 45vh;
+    padding-bottom: 45vh;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* 404 Specific Container Override */
+body.page-404 .container {
+    padding: 2rem;
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+li {
+    margin-bottom: 1rem;
+    padding: 0.5rem 0.5rem;
+    position: relative;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border 0.2s ease-out, background-color 0.3s ease;
+    border: 2px solid transparent;
+    background: var(--card-bg);
+}
+
+li:hover {
+    transform: translate(-4px, -4px);
+    border: 2px solid var(--card-hover-border);
+    box-shadow: 6px 6px 0px var(--card-hover-shadow);
+    background: var(--card-hover-bg);
+}
+
+h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+p {
+    margin: 0.5rem 0 0 0;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--desc-color);
+}
+
+/* 404 Styles */
+h1 {
+    font-size: 6rem;
+    margin: 0;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin: 0.5rem 0 2rem 0;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.message {
+    font-size: 2rem;
+    color: var(--message-color);
+    margin-bottom: 2rem;
+    max-width: 400px;
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-family: 'Google Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--btn-text);
+    background: var(--btn-bg);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border 0.2s ease-out, background-color 0.3s ease;
+}
+
+.btn:hover {
+    transform: translate(-4px, -4px);
+    border: 2px solid var(--btn-border-hover);
+    box-shadow: 6px 6px 0px var(--btn-shadow-hover);
+}
+
+.btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.home-link {
+    margin-top: 2rem;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.2s ease-out;
+    align-self: center;
+}
+
+.home-link:hover {
+    border-bottom: 1px solid var(--text-color);
+}
+
+.btn-home {
+    margin-top: 2rem;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    align-self: center;
+    width: fit-content;
+    border: 1px solid transparent;
+    padding: 0.3rem 0.6rem;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border 0.2s ease-out;
+}
+
+.btn-home:hover {
+    transform: translate(-4px, -4px);
+    border: 1px solid var(--btn-border-hover);
+    box-shadow: 6px 6px 0px var(--btn-shadow-hover);
+}
+
+
+/* Fox Button */
+.fox-button {
+    cursor: pointer;
+    font-size: 2rem;
+    opacity: var(--fox-opacity);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.fox-button:hover {
+    opacity: 1;
+    transform: translate(-4px, -4px) scale(1.1);
+}
+
+/* Fox Animation Styles */
+.fox-runner {
+    position: fixed;
+    height: 80px;
+    z-index: 9999;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.fox-runner img {
+    height: 100%;
+    width: auto;
+    pointer-events: none;
+}
+
+/* Bottom: left to right */
+.fox-runner.bottom {
+    bottom: -10px;
+    left: -150px;
+    animation: runBottomLR var(--run-duration, 6s) linear forwards;
+}
+
+.fox-runner.bottom.reverse {
+    animation: runBottomRL var(--run-duration, 6s) linear forwards;
+    transform: scaleX(-1);
+}
+
+@keyframes runBottomLR {
+    0% {
+        left: -150px;
+    }
+
+    100% {
+        left: calc(100vw + 150px);
+    }
+}
+
+@keyframes runBottomRL {
+    0% {
+        left: calc(100vw + 150px);
+    }
+
+    100% {
+        left: -150px;
+    }
+}
+
+/* Top: left to right */
+.fox-runner.top {
+    top: -10px;
+    left: -150px;
+    animation: runTopLR var(--run-duration, 6s) linear forwards;
+    transform: scaleY(-1);
+}
+
+.fox-runner.top.reverse {
+    animation: runTopRL var(--run-duration, 6s) linear forwards;
+    transform: scale(-1, -1);
+}
+
+@keyframes runTopLR {
+    0% {
+        left: -150px;
+    }
+
+    100% {
+        left: calc(100vw + 150px);
+    }
+}
+
+@keyframes runTopRL {
+    0% {
+        left: calc(100vw + 150px);
+    }
+
+    100% {
+        left: -150px;
+    }
+}
+
+/* Left: top to bottom */
+.fox-runner.left {
+    left: -50px;
+    top: -150px;
+    animation: runLeftTB var(--run-duration, 6s) linear forwards;
+    transform: rotate(90deg);
+    transform-origin: center center;
+}
+
+.fox-runner.left.reverse {
+    animation: runLeftBT var(--run-duration, 6s) linear forwards;
+    transform: rotate(90deg) scaleX(-1);
+    transform-origin: center center;
+}
+
+@keyframes runLeftTB {
+    0% {
+        top: -150px;
+    }
+
+    100% {
+        top: calc(100vh + 150px);
+    }
+}
+
+@keyframes runLeftBT {
+    0% {
+        top: calc(100vh + 150px);
+    }
+
+    100% {
+        top: -150px;
+    }
+}
+
+/* Right: top to bottom */
+.fox-runner.right {
+    right: -50px;
+    top: -150px;
+    animation: runRightTB var(--run-duration, 6s) linear forwards;
+    transform: rotate(-90deg) scaleX(-1);
+    transform-origin: center center;
+}
+
+.fox-runner.right.reverse {
+    animation: runRightBT var(--run-duration, 6s) linear forwards;
+    transform: rotate(-90deg);
+    transform-origin: center center;
+}
+
+@keyframes runRightTB {
+    0% {
+        top: -150px;
+    }
+
+    100% {
+        top: calc(100vh + 150px);
+    }
+}
+
+@keyframes runRightBT {
+    0% {
+        top: calc(100vh + 150px);
+    }
+
+    100% {
+        top: -150px;
+    }
+}
+
+/* ====== CANNON STYLES ====== */
+.cannon-container {
+    position: fixed;
+    bottom: -30px;
+    right: -80px;
+    z-index: 10000;
+    cursor: pointer;
+    transition: bottom 0.3s ease, right 0.3s ease, transform 0.2s ease;
+}
+
+.cannon-container.peek {
+    bottom: -5px;
+    right: 10px;
+}
+
+.cannon-container:hover,
+.cannon-container.visible {
+    bottom: 15px;
+    right: 20px;
+}
+
+.cannon-container:hover {
+    transform: scale(1.1);
+}
+
+.cannon-container.active {
+    filter: drop-shadow(0 0 10px #ff6b00) drop-shadow(0 0 20px #ff4500);
+}
+
+/* Invisible corner trigger zone */
+.corner-trigger {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    z-index: 9999;
+    pointer-events: auto;
+}
+
+.barrel {
+    width: 100px;
+    height: 25px;
+    background: linear-gradient(to bottom, #666, #333);
+    border-radius: 5px 15px 15px 5px;
+    border: 2px solid #111;
+    transform: rotate(0deg);
+    transition: transform 0.5s ease;
+}
+
+
+.cannon-container.active .barrel {
+    transform: rotate(45deg);
+    animation: barrelReady 1s ease-in-out 0.5s infinite alternate;
+}
+
+@keyframes barrelReady {
+    0% {
+        transform: rotate(45deg);
+    }
+
+    100% {
+        transform: rotate(50deg);
+    }
+}
+
+/* Cannonball projectile */
+.cannonball {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle at 30% 30%, #555, #111);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.cannonball::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 5px;
+    width: 6px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+}
+
+/* Explosion effect */
+.explosion {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+.explosion-particle {
+    position: absolute;
+    border-radius: 50%;
+    animation: explode 0.6s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Smoke ring */
+.smoke-ring {
+    position: fixed;
+    border: 4px solid rgba(100, 100, 100, 0.6);
+    border-radius: 50%;
+    animation: smokeExpand 0.5s ease-out forwards;
+    pointer-events: none;
+    z-index: 9997;
+}
+
+@keyframes smokeExpand {
+    0% {
+        width: 20px;
+        height: 20px;
+        opacity: 1;
+    }
+
+    100% {
+        width: 150px;
+        height: 150px;
+        opacity: 0;
+        border-color: rgba(150, 150, 150, 0);
+    }
+}
+
+/* Entry destruction animation */
+.destroying {
+    animation: destroyEntry 0.5s ease-out forwards;
+}
+
+@keyframes destroyEntry {
+    0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    100% {
+        transform: scale(0) rotate(20deg);
+        opacity: 0;
+    }
+}
+
+/* Crosshair cursor when cannon is active */
+body.cannon-mode {
+    cursor: crosshair;
+}
+
+body.cannon-mode li {
+    cursor: crosshair;
+}
+
+body.cannon-mode a {
+    cursor: crosshair;
+}
+
+body.cannon-mode li:hover {
+    cursor: crosshair !important;
+    border-color: #ff4500 !important;
+    box-shadow: 6px 6px 0px #ff4500, 0 0 20px rgba(255, 69, 0, 0.5) !important;
+    background: transparent !important;
+}
+
+/* Muzzle flash */
+.muzzle-flash {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, #fff 0%, #ff0 30%, #f80 60%, transparent 70%);
+    border-radius: 50%;
+    animation: flash 0.15s ease-out forwards;
+    pointer-events: none;
+    z-index: 10001;
+}
+
+@keyframes flash {
+    0% {
+        transform: scale(0.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
